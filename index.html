@@ -38,26 +38,37 @@ input,select,textarea{font-family:'Vazirmatn',sans-serif}
 .btn-block{width:100%}
 .page{display:none;padding-top:var(--nav);min-height:100vh}
 .page.active{display:block}
-.hero{background:linear-gradient(140deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);padding:48px 20px 56px;text-align:center;position:relative;overflow:hidden}
+.hero{background:linear-gradient(140deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);padding:14px 16px 14px;text-align:center;position:relative;overflow:hidden}
 .hero-pattern{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:16px}
-.hero h1{font-size:30px;font-weight:900;color:#fff;line-height:1.25;margin-bottom:12px;position:relative}
-.hero h1 em{font-style:normal;color:var(--o2)}
-.hero p{color:rgba(255,255,255,.75);font-size:15px;margin-bottom:28px;position:relative}
-.search-box{background:#fff;border-radius:var(--r2);padding:6px;display:flex;gap:6px;max-width:500px;margin:0 auto 28px;box-shadow:var(--sh3);flex-wrap:wrap}
-.search-box input{flex:1;min-width:160px;border:none;outline:none;padding:10px 14px;font-size:14px;background:transparent}
-.search-box select{border:none;outline:none;padding:8px 12px;font-size:13px;background:var(--cream);border-radius:var(--r1);color:var(--t2);cursor:pointer}
-.search-box button{padding:10px 18px;background:var(--o1);color:#fff;border:none;border-radius:var(--r1);font-size:14px;font-weight:700;cursor:pointer}
-.hero-stats{display:flex;justify-content:center;gap:32px;position:relative}
+.hero-tag{display:none}
+.hero h1{display:none}
+.hero p{display:none}
+.search-box{background:#fff;border-radius:var(--r2);padding:5px;display:flex;gap:5px;max-width:600px;margin:0 auto;box-shadow:var(--sh3);flex-wrap:nowrap}
+.search-box input{flex:1;min-width:0;border:none;outline:none;padding:8px 12px;font-size:14px;background:transparent}
+.search-box select{border:none;outline:none;padding:7px 8px;font-size:12px;background:var(--cream);border-radius:var(--r1);color:var(--t2);cursor:pointer;max-width:100px}
+.search-box button{padding:8px 14px;background:var(--o1);color:#fff;border:none;border-radius:var(--r1);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.hero-stats{display:none}
 .hstat{text-align:center;color:#fff}
 .hstat-n{font-size:24px;font-weight:900;color:var(--o2)}
 .hstat-l{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
-.tabs{display:flex;background:#fff;border-bottom:2px solid var(--border2);overflow-x:auto;scrollbar-width:none;position:sticky;top:var(--nav);z-index:100;padding:0 16px}
-.tabs::-webkit-scrollbar{display:none}
-.tab{padding:14px 16px;font-size:14px;font-weight:600;color:var(--t3);border:none;background:transparent;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.15s}
-.tab:hover{color:var(--g2)}.tab.active{color:var(--g2);border-bottom-color:var(--g2)}
-.tab-count{background:var(--cream);color:var(--t3);padding:2px 7px;border-radius:10px;font-size:11px;font-weight:700}
-.tab.active .tab-count{background:var(--g3);color:#fff}
+.tabs{display:none}
+.tab{display:none}
+.tab-count{display:none}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:62px;background:#fff;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-around;z-index:500;box-shadow:0 -4px 16px rgba(0,0,0,.07)}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 14px;border-radius:var(--r2);border:none;background:transparent;transition:.15s;flex:1}
+.bn-item:hover{background:var(--cream)}
+.bn-item.active .bn-icon{color:var(--g2)}
+.bn-item.active .bn-label{color:var(--g2);font-weight:700}
+.bn-icon{font-size:22px;color:var(--t3);transition:.15s}
+.bn-label{font-size:11px;color:var(--t3);font-family:'Vazirmatn',sans-serif;font-weight:500}
+.bn-center{background:var(--o1);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 12px rgba(212,113,31,.4);border:none;cursor:pointer;transition:.15s;margin-bottom:16px}
+.bn-center:hover{background:#b85e18;transform:scale(1.05)}
+/* CAT FILTER BAR */
+.cat-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 16px 0;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--border2)}
+.cat-bar::-webkit-scrollbar{display:none}
+.cat-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;color:var(--t2);white-space:nowrap;font-family:'Vazirmatn',sans-serif}
+.cat-btn:hover,.cat-btn.active{background:var(--g2);color:#fff;border-color:var(--g2)}
 .section{max-width:1100px;margin:0 auto;padding:24px 16px}
 .sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .sec-title{font-size:18px;font-weight:800;color:var(--g1);display:flex;align-items:center;gap:8px}
@@ -219,13 +230,59 @@ textarea.fi{resize:vertical;min-height:80px}
 <body>
 <nav class="navbar">
   <div class="nav-logo" onclick="showPage('pageHome')">
-    <span class="nav-logo-emoji">🐾</span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="36" height="36" style="display:block">
+  <circle cx="100" cy="100" r="100" fill="#6B3F1F"/>
+  <g stroke="#E8874A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="100" cy="105" rx="42" ry="38"/>
+    <path d="M 68 74 C 58 56, 64 42, 73 49"/>
+    <path d="M 132 74 C 142 56, 136 42, 127 49"/>
+    <ellipse cx="55" cy="90" rx="10" ry="14" transform="rotate(-20 55 90)"/>
+    <ellipse cx="145" cy="90" rx="10" ry="14" transform="rotate(20 145 90)"/>
+    <circle cx="84" cy="95" r="7"/>
+    <circle cx="116" cy="95" r="7"/>
+    <ellipse cx="100" cy="122" rx="22" ry="16"/>
+    <circle cx="92" cy="122" r="4"/>
+    <circle cx="108" cy="122" r="4"/>
+  </g>
+  <circle cx="87" cy="92" r="2.2" fill="#E8874A"/>
+  <circle cx="119" cy="92" r="2.2" fill="#E8874A"/>
+</svg>
     <span class="nav-logo-text">حیوان<em>بازار</em></span>
   </div>
   <div class="nav-right" id="navRight">
     <button class="btn btn-ghost btn-sm" onclick="openModal('authModal');switchAuthTab('login')">ورود</button>
     <button class="btn btn-primary btn-sm" onclick="openModal('authModal');switchAuthTab('register')">ثبت‌نام</button>
   </div>
+</nav>
+
+<!-- CATEGORY FILTER BAR (زیر نوار بالا) -->
+<div class="cat-bar" id="catBar" style="position:sticky;top:64px;z-index:99">
+  <button class="cat-btn active" onclick="selectCat('all',this)">🌐 همه</button>
+  <button class="cat-btn" onclick="selectCat('farm',this)">🐄 مزرعه‌ای</button>
+  <button class="cat-btn" onclick="selectCat('pet',this)">🐾 خانگی</button>
+  <button class="cat-btn" onclick="selectCat('supply',this)">🛒 لوازم</button>
+  <button class="cat-btn" onclick="showPage('pageVet')">🩺 دامپزشکان</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="bn-item active" id="bn-home" onclick="showPage('pageHome');setActiveBottomNav('bn-home')">
+    <span class="bn-icon">🏠</span>
+    <span class="bn-label">خانه</span>
+  </button>
+  <button class="bn-item" id="bn-search" onclick="document.getElementById('searchInput').focus();showPage('pageHome');setActiveBottomNav('bn-search')">
+    <span class="bn-icon">🔍</span>
+    <span class="bn-label">جستجو</span>
+  </button>
+  <button class="bn-center" onclick="openNewListing()" title="آگهی جدید">➕</button>
+  <button class="bn-item" id="bn-chat" onclick="showPage('pageChat');setActiveBottomNav('bn-chat')">
+    <span class="bn-icon">💬</span>
+    <span class="bn-label">پیام‌ها</span>
+  </button>
+  <button class="bn-item" id="bn-profile" onclick="handleProfileNav();setActiveBottomNav('bn-profile')">
+    <span class="bn-icon">👤</span>
+    <span class="bn-label">پروفایل</span>
+  </button>
 </nav>
 
 <!-- HOME -->
@@ -245,22 +302,9 @@ textarea.fi{resize:vertical;min-height:80px}
       </select>
       <button onclick="renderListings()">جستجو</button>
     </div>
-    <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n" id="hStatListings">۰</div><div class="hstat-l">آگهی فعال</div></div>
-      <div class="hstat"><div class="hstat-n" id="hStatUsers">۰</div><div class="hstat-l">کاربر</div></div>
-      <div class="hstat"><div class="hstat-n">۳۱</div><div class="hstat-l">استان</div></div>
-    </div>
   </div>
-  <div class="tabs">
-    <button class="tab active" onclick="selectCat('all',this)">🌐 همه <span class="tab-count" id="tc-all">0</span></button>
-    <button class="tab" onclick="selectCat('farm',this)">🐄 مزرعه‌ای <span class="tab-count" id="tc-farm">0</span></button>
-    <button class="tab" onclick="selectCat('pet',this)">🐾 خانگی <span class="tab-count" id="tc-pet">0</span></button>
-    <button class="tab" onclick="selectCat('supply',this)">🛒 لوازم <span class="tab-count" id="tc-supply">0</span></button>
-    <button class="tab" onclick="showPage('pageVet')">🩺 دامپزشکان</button>
-  </div>
-  <div class="section">
+  <div class="section" style="padding-top:16px;padding-bottom:80px">
     <div class="sec-header">
-      <div class="sec-title">📋 آگهی‌های اخیر</div>
       <div class="filter-row">
         <span class="chip active" onclick="setSort('newest',this)">جدیدترین</span>
         <span class="chip" onclick="setSort('cheapest',this)">ارزان‌ترین</span>
@@ -271,6 +315,13 @@ textarea.fi{resize:vertical;min-height:80px}
     <div class="grid" id="listingsGrid"></div>
     <div class="empty" id="emptyState" style="display:none"><div class="empty-icon">🔍</div><p>آگهی‌ای پیدا نشد</p></div>
   </div>
+  <!-- hidden stat elements still needed by JS -->
+  <span id="hStatListings" style="display:none"></span>
+  <span id="hStatUsers" style="display:none"></span>
+  <span id="tc-all" style="display:none"></span>
+  <span id="tc-farm" style="display:none"></span>
+  <span id="tc-pet" style="display:none"></span>
+  <span id="tc-supply" style="display:none"></span>
 </div>
 
 <!-- PROFILE -->
@@ -510,18 +561,21 @@ const priceSuggests={'گاو':{min:40e6,max:150e6},'گوسفند':{min:8e6,max:2
 const vets=[{id:'v1',name:'دکتر امیر حسینی',spec:'متخصص سگ و گربه',city:'تهران',stars:4.9,count:132,emoji:'👨‍⚕️',avail:true},{id:'v2',name:'دکتر مریم صادقی',spec:'متخصص دام و طیور',city:'اصفهان',stars:4.7,count:89,emoji:'👩‍⚕️',avail:true},{id:'v3',name:'دکتر علی کریمی',spec:'متخصص پرندگان',city:'تهران',stars:4.8,count:67,emoji:'👨‍⚕️',avail:false},{id:'v4',name:'دکتر زهرا محمدی',spec:'عمومی حیوانات',city:'شیراز',stars:4.6,count:54,emoji:'👩‍⚕️',avail:true}];
 
 function seed(){
-  if(DB.get('seeded3',false))return;
-  DB.set('users',[{id:'u1',firstName:'محمد',lastName:'رضایی',phone:'09121234567',city:'تهران',verified:true,badge:'gold',rating:4.8,ratingCount:12,createdAt:Date.now()-864e5*30},{id:'u2',firstName:'فاطمه',lastName:'کریمی',phone:'09361234567',city:'اصفهان',verified:true,badge:'silver',rating:4.5,ratingCount:7,createdAt:Date.now()-864e5*20},{id:'u3',firstName:'حسن',lastName:'مرادی',phone:'09031234567',city:'شیراز',verified:false,badge:'bronze',rating:4.0,ratingCount:3,createdAt:Date.now()-864e5*10},{id:'admin',firstName:'مدیر',lastName:'سیستم',phone:'09000000000',city:'تهران',verified:true,badge:'gold',rating:5,ratingCount:0,isAdmin:true,createdAt:Date.now()-864e5*60}]);
-  DB.set('listings',[{id:'l1',cat:'farm',type:'گوسفند',breed:'مرینوس',gender:'female',use:'گوشتی',age:18,price:15000000,city:'تهران',desc:'گوسفند نژاد مرینوس سالم. کاملاً واکسینه شده.',userId:'u1',images:['🐑'],exchange:false,health:{vaccine:'آبله - ۱۴۰۳/۰۴',vetDate:'۱۴۰۳/۰۷',status:'کاملاً سالم',notes:''},status:'active',createdAt:Date.now()-864e5*3},{id:'l2',cat:'pet',type:'سگ',breed:'گلدن رتریور',gender:'male',use:'همبازی',age:8,price:8000000,city:'اصفهان',desc:'توله سگ گلدن رتریور بازیگوش.',userId:'u2',images:['🐕'],exchange:true,health:{vaccine:'هاری - ۱۴۰۳/۰۶',vetDate:'۱۴۰۳/۰۸',status:'کاملاً سالم',notes:''},status:'active',createdAt:Date.now()-864e5*2},{id:'l3',cat:'farm',type:'گاو',breed:'هلشتاین',gender:'female',use:'شیرده',age:36,price:85000000,city:'تبریز',desc:'گاو هلشتاین ۲۵ لیتر شیر روزانه.',userId:'u3',images:['🐄'],exchange:false,health:{vaccine:'تب برفکی - ۱۴۰۳/۰۳',vetDate:'۱۴۰۳/۰۶',status:'کاملاً سالم',notes:''},status:'active',createdAt:Date.now()-864e5},{id:'l4',cat:'pet',type:'گربه',breed:'پرشین',gender:'female',use:'زینتی',age:5,price:4500000,city:'مشهد',desc:'بچه گربه پرشین سفید با چشمان آبی.',userId:'u1',images:['🐱'],exchange:false,health:{vaccine:'ضد ویروس - ۱۴۰۳/۰۷',vetDate:'۱۴۰۳/۰۸',status:'کاملاً سالم',notes:''},status:'active',createdAt:Date.now()-36e5*5},{id:'l5',cat:'supply',type:'قفس پرنده',breed:'',gender:'',use:'نگهداری پرنده',age:null,price:1200000,city:'تهران',desc:'قفس مدرن استیل ۸۰×۱۲۰.',userId:'u2',images:['🔲'],exchange:false,health:null,status:'active',createdAt:Date.now()-36e5*2},{id:'l6',cat:'farm',type:'مرغ',breed:'بومی',gender:'female',use:'تخمگذار',age:12,price:850000,city:'شیراز',desc:'مرغ بومی تخمگذار اصیل.',userId:'u3',images:['🐓'],exchange:true,health:null,status:'active',createdAt:Date.now()-36e5},{id:'l7',cat:'pet',type:'طوطی',breed:'ماکائو',gender:'male',use:'زینتی',age:6,price:2500000,city:'کرج',desc:'طوطی ماکائو رنگارنگ.',userId:'u1',images:['🦜'],exchange:false,health:null,status:'active',createdAt:Date.now()-18e5},{id:'l8',cat:'supply',type:'غذای سگ',breed:'',gender:'',use:'تغذیه',age:null,price:450000,city:'تهران',desc:'غذای خشک پروبیوتیک ۱۰ کیلوگرم.',userId:'u2',images:['🍖'],exchange:false,health:null,status:'active',createdAt:Date.now()-9e5},{id:'l9',cat:'farm',type:'اسب',breed:'عرب',gender:'male',use:'سواری',age:48,price:320000000,city:'اصفهان',desc:'اسب عرب اصیل با شجره‌نامه.',userId:'u3',images:['🐎'],exchange:false,health:{vaccine:'آنفلوانزا - ۱۴۰۳/۰۵',vetDate:'۱۴۰۳/۰۸',status:'کاملاً سالم',notes:''},status:'active',createdAt:Date.now()-7200e3}]);
-  DB.set('chats',{});DB.set('notifs',{});DB.set('reports',[]);DB.set('bookmarks',{});DB.set('seeded3',true);
+  if(DB.get('initialized',false))return;
+  if(!DB.get('users',null)) DB.set('users',[]);
+  if(!DB.get('listings',null)) DB.set('listings',[]);
+  if(!DB.get('chats',null)) DB.set('chats',{});
+  if(!DB.get('notifs',null)) DB.set('notifs',{});
+  if(!DB.get('reports',null)) DB.set('reports',[]);
+  if(!DB.get('bookmarks',null)) DB.set('bookmarks',{});
+  DB.set('initialized',true);
 }
 
 function updateNav(){
   const nr=document.getElementById('navRight');
   if(CU){
-    const ini=(CU.firstName[0]||'')+(CU.lastName[0]||'');
     const nc=getUnreadNotifs();
-    nr.innerHTML=`<button class="nav-icon-btn" onclick="showPage('pageNotif')">🔔${nc>0?'<span class="nav-badge"></span>':''}</button><button class="nav-icon-btn" onclick="showPage('pageChat')">💬</button>${CU.isAdmin?'<button class="nav-icon-btn" onclick="showPage(\'pageAdmin\')">⚙️</button>':''}<button class="btn btn-primary btn-sm" onclick="openNewListing()">+ آگهی</button><div style="display:flex;align-items:center;gap:8px"><span class="nav-username">${CU.firstName}</span><div class="nav-avatar" onclick="showPage('pageProfile')">${ini}</div></div>`;
+    nr.innerHTML=`<button class="nav-icon-btn" onclick="showPage('pageNotif')">🔔${nc>0?'<span class="nav-badge"></span>':''}</button>${CU.isAdmin?'<button class="nav-icon-btn" onclick="showPage(\'pageAdmin\')">⚙️</button>':''}`;
   }else{nr.innerHTML='<button class="btn btn-ghost btn-sm" onclick="openModal(\'authModal\');switchAuthTab(\'login\')">ورود</button><button class="btn btn-primary btn-sm" onclick="openModal(\'authModal\');switchAuthTab(\'register\')">ثبت‌نام</button>';}
 }
 function getUnreadNotifs(){if(!CU)return 0;return((DB.get('notifs',{}))[CU.id]||[]).filter(n=>!n.read).length;}
@@ -530,16 +584,24 @@ function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  // نمایش/مخفی کردن نوار دسته‌بندی
+  const catBar=document.getElementById('catBar');
+  if(catBar) catBar.style.display=id==='pageHome'?'flex':'none';
   if(id==='pageProfile')renderProfile();
   if(id==='pageChat')renderChatPage();
   if(id==='pageNotif')renderNotifs();
   if(id==='pageAdmin')renderAdmin();
   if(id==='pageVet')renderVets();
   if(id==='pageHome')renderListings();
+  // آپدیت تب‌بار پایین
+  const map={'pageHome':'bn-home','pageChat':'bn-chat','pageProfile':'bn-profile'};
+  if(map[id]) setActiveBottomNav(map[id]);
 }
 
-function selectCat(cat,el){selCat=cat;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderListings();}
+function selectCat(cat,el){selCat=cat;document.querySelectorAll('.cat-btn').forEach(t=>t.classList.remove('active'));el.classList.add('active');showPage('pageHome');renderListings();}
 function setSort(mode,el){sortMode=mode;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderListings();}
+function setActiveBottomNav(id){document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));const el=document.getElementById(id);if(el)el.classList.add('active');}
+function handleProfileNav(){if(CU)showPage('pageProfile');else{openModal('authModal');switchAuthTab('login');}}
 
 function renderListings(){
   let ls=DB.get('listings').filter(l=>l.status==='active');
