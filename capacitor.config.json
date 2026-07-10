@@ -1,1 +1,15 @@
-{"appId": "com.example.hayvanbazar","appName": "حیوان بازار","webDir": "www","plugins": {"SplashScreen": {"launchShowDuration": 0,"launchAutoHide": true,"backgroundColor": "#ffffff","showSpinner": false}
+{
+  "appId": "com.hayvanBazar.app",
+  "appName": "حیوان‌بازار",
+  "webDir": "www",
+  "server": { "androidScheme": "https" },
+  "android": { "backgroundColor": "#1E3A0F" },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "launchAutoHide": true,
+      "backgroundColor": "#1E3A0F",
+      "showSpinner": false
+    }
+  }
+}
