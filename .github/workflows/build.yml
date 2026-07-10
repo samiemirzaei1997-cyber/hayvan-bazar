@@ -16,8 +16,8 @@ jobs:
       - run: mkdir -p www && cp index.html www/
       - run: npx cap add android
       - run: npx cap sync
+      - run: rm -f android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
       - run: mkdir -p android/app/src/main/res/mipmap-xxxhdpi android/app/src/main/res/mipmap-xxhdpi android/app/src/main/res/mipmap-xhdpi android/app/src/main/res/mipmap-hdpi android/app/src/main/res/mipmap-mdpi
-      - run: cp icon-192.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png && cp icon-192.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png && cp icon-192.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png && cp icon-192.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png && cp icon-96.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png && cp icon-96.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
       - run: cp icon-192.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png && cp icon-192.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png && cp icon-96.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png
       - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
