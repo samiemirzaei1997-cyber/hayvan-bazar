@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1E3A0F">
+<title>حیوان‌بازار</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--g1:#1E3A0F;--g2:#3D6B22;--g3:#6BA832;--o1:#D4711F;--o2:#F09040;--cream:#F5F0E8;--warm:#FDFAF5;--t1:#111;--t2:#444;--t3:#777;--t4:#AAA;--border:#DDD5C8;--border2:#EDE7DC;--red:#E03030;--sh1:0 2px 8px rgba(30,58,15,.07);--sh2:0 6px 24px rgba(30,58,15,.12);--sh3:0 16px 48px rgba(30,58,15,.18);--r1:6px;--r2:12px;--r3:18px;--nav:64px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Vazirmatn',sans-serif;background:var(--cream);color:var(--t1);min-height:100vh;overflow-x:hidden}
+button{cursor:pointer;font-family:'Vazirmatn',sans-serif}
+input,select,textarea{font-family:'Vazirmatn',sans-serif}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:var(--g3);border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav);background:var(--g1);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:500;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.nav-logo{display:flex;align-items:center;gap:8px;cursor:pointer}
+.nav-logo-emoji{font-size:26px}
+.nav-logo-text{font-size:18px;font-weight:900;color:#fff}
+.nav-logo-text em{font-style:normal;color:var(--o2)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-icon-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:.15s}
+.nav-icon-btn:hover{background:rgba(255,255,255,.2)}
+.nav-badge{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--o1);border-radius:50%;border:2px solid var(--g1)}
+.nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--o1);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;cursor:pointer;border:2px solid rgba(255,255,255,.3)}
+.nav-username{color:rgba(255,255,255,.8);font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:var(--r1);border:none;font-size:14px;font-weight:600;transition:.15s;cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--o1);color:#fff}.btn-primary:hover{background:#b85e18;transform:translateY(-1px)}
+.btn-green{background:var(--g2);color:#fff}.btn-green:hover{background:var(--g1)}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--t2)}.btn-outline:hover{border-color:var(--g3);color:var(--g2)}
+.btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-sm{padding:7px 14px;font-size:13px}
+.btn-lg{padding:14px 28px;font-size:16px}
+.btn-block{width:100%}
+.page{display:none;padding-top:var(--nav);min-height:100vh}
+.page.active{display:block}
+.hero{background:linear-gradient(140deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);padding:14px 16px 14px;text-align:center;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px}
+.hero-tag{display:none}
+.hero h1{display:none}
+.hero p{display:none}
+.search-box{background:#fff;border-radius:var(--r2);padding:5px;display:flex;gap:5px;max-width:600px;margin:0 auto;box-shadow:var(--sh3);flex-wrap:nowrap}
+.search-box input{flex:1;min-width:0;border:none;outline:none;padding:8px 12px;font-size:14px;background:transparent}
+.search-box select{border:none;outline:none;padding:7px 8px;font-size:12px;background:var(--cream);border-radius:var(--r1);color:var(--t2);cursor:pointer;max-width:100px}
+.search-box button{padding:8px 14px;background:var(--o1);color:#fff;border:none;border-radius:var(--r1);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.hero-stats{display:none}
+.hstat{text-align:center;color:#fff}
+.hstat-n{font-size:24px;font-weight:900;color:var(--o2)}
+.hstat-l{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
+.tabs{display:none}
+.tab{display:none}
+.tab-count{display:none}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:62px;background:#fff;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-around;z-index:500;box-shadow:0 -4px 16px rgba(0,0,0,.07)}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 14px;border-radius:var(--r2);border:none;background:transparent;transition:.15s;flex:1}
+.bn-item:hover{background:var(--cream)}
+.bn-item.active .bn-icon{color:var(--g2)}
+.bn-item.active .bn-label{color:var(--g2);font-weight:700}
+.bn-icon{font-size:22px;color:var(--t3);transition:.15s}
+.bn-label{font-size:11px;color:var(--t3);font-family:'Vazirmatn',sans-serif;font-weight:500}
+.bn-center{background:var(--o1);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 12px rgba(212,113,31,.4);border:none;cursor:pointer;transition:.15s;margin-bottom:16px}
+.bn-center:hover{background:#b85e18;transform:scale(1.05)}
+/* CAT FILTER BAR */
+.cat-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 16px 0;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--border2)}
+.cat-bar::-webkit-scrollbar{display:none}
+.cat-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;color:var(--t2);white-space:nowrap;font-family:'Vazirmatn',sans-serif}
+.cat-btn:hover,.cat-btn.active{background:var(--g2);color:#fff;border-color:var(--g2)}
+.section{max-width:1100px;margin:0 auto;padding:24px 16px}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.sec-title{font-size:18px;font-weight:800;color:var(--g1);display:flex;align-items:center;gap:8px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:500;cursor:pointer;transition:.15s;color:var(--t2)}
+.chip:hover,.chip.active{background:var(--g2);color:#fff;border-color:var(--g2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.card{background:#fff;border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh1);transition:.2s;cursor:pointer;border:1.5px solid transparent}
+.card:hover{transform:translateY(-3px);box-shadow:var(--sh2);border-color:var(--border2)}
+.card-img{height:185px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:60px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img-count{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px}
+.card-bookmark{position:absolute;top:8px;left:8px;width:30px;height:30px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;border:none;transition:.15s;cursor:pointer}
+.card-body{padding:12px 14px}
+.card-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-farm{background:#e6f4d6;color:var(--g2)}.badge-pet{background:#fde8d4;color:#8B4513}.badge-supply{background:#e8e8f8;color:#4040a0}.badge-agri{background:#fff3c4;color:#8a6d00}
+.badge-verified{background:#dcfce7;color:#166534}.badge-gold{background:#fef3c7;color:#92400e}.badge-exchange{background:#f0f9ff;color:#0369a1}
+.card-title{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--t1)}
+.card-meta{display:flex;gap:10px;font-size:12px;color:var(--t3);margin-bottom:8px;flex-wrap:wrap}
+.card-price{font-size:17px;font-weight:800;color:var(--o1)}
+.card-price small{font-size:12px;font-weight:400;color:var(--t3)}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border2)}
+.seller-info{display:flex;align-items:center;gap:6px}
+.seller-av{width:24px;height:24px;border-radius:50%;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.seller-name-sm{font-size:12px;color:var(--t2)}
+.stars{color:#F59E0B;font-size:12px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:600;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--r3);width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:var(--sh3);animation:slideUp .25s ease}
+.modal-lg{max-width:680px}
+.modal-hd{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;border-radius:var(--r3) var(--r3) 0 0}
+.modal-title{font-size:18px;font-weight:800;color:var(--g1)}
+.modal-close{width:34px;height:34px;border-radius:50%;border:none;background:var(--cream);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.modal-body{padding:20px}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fg{margin-bottom:16px}.fl{display:block;font-size:13px;font-weight:600;color:var(--t1);margin-bottom:6px}
+.fi{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r1);font-size:14px;outline:none;transition:.15s;background:var(--warm);color:var(--t1)}
+.fi:focus{border-color:var(--g3);background:#fff}
+select.fi{cursor:pointer}
+textarea.fi{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ferr{color:var(--red);font-size:12px;margin-top:4px;display:none}.ferr.show{display:block}
+.upload-area{border:2px dashed var(--border);border-radius:var(--r2);padding:20px;text-align:center;cursor:pointer;transition:.15s;background:var(--warm)}
+.upload-area:hover{border-color:var(--g3)}
+.upload-area input{display:none}
+.img-previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.img-wrap{position:relative;width:72px;height:72px}
+.img-wrap img{width:100%;height:100%;object-fit:cover;border-radius:var(--r1);border:1.5px solid var(--border)}
+.img-del{position:absolute;top:-7px;right:-7px;width:20px;height:20px;background:var(--red);color:#fff;border-radius:50%;border:none;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.auth-tabs{display:flex;border-bottom:2px solid var(--border2);margin-bottom:20px}
+.auth-tab{flex:1;padding:11px;text-align:center;font-weight:600;font-size:14px;cursor:pointer;color:var(--t3);border-bottom:2px solid transparent;margin-bottom:-2px;transition:.15s}
+.auth-tab.active{color:var(--g2);border-bottom-color:var(--g2)}
+.af{display:none}.af.active{display:block}
+.sms-box{display:flex;gap:8px;margin-bottom:12px}
+.sms-box input{flex:1}
+.sms-sent{background:var(--cream);border-radius:var(--r1);padding:10px 14px;font-size:13px;color:var(--t2);text-align:center;margin-bottom:12px}
+.sms-sent strong{color:var(--g2)}
+.detail-gallery{margin-bottom:20px}
+.main-img{width:100%;height:280px;border-radius:var(--r2);overflow:hidden;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:8px}
+.main-img img{width:100%;height:100%;object-fit:cover}
+.thumb-row{display:flex;gap:8px;overflow-x:auto}
+.thumb-row img{width:68px;height:68px;object-fit:cover;border-radius:var(--r1);cursor:pointer;border:2px solid transparent;flex-shrink:0}
+.thumb-row img.active{border-color:var(--g2)}
+.detail-price{font-size:28px;font-weight:900;color:var(--o1);margin:14px 0}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.di{background:var(--cream);border-radius:var(--r1);padding:11px}
+.di-label{font-size:11px;color:var(--t3);margin-bottom:3px}
+.di-value{font-size:14px;font-weight:600}
+.detail-desc{font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:16px}
+.seller-box{background:var(--cream);border-radius:var(--r2);padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.seller-av-lg{width:50px;height:50px;border-radius:50%;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0}
+.seller-box-info{flex:1}
+.seller-fullname{font-weight:700;font-size:15px}
+.seller-phone{font-size:13px;color:var(--t3);direction:ltr;text-align:right}
+.health-section{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--r2);padding:14px;margin-bottom:14px}
+.health-title{font-weight:700;color:#166534;margin-bottom:10px;font-size:14px}
+.health-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #dcfce7}
+.health-row:last-child{border:none}
+.profile-hero{background:linear-gradient(135deg,var(--g1),var(--g2));padding:36px 20px;text-align:center;color:#fff}
+.p-av{width:80px;height:80px;border-radius:50%;background:var(--o1);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;margin:0 auto 12px;border:3px solid rgba(255,255,255,.25)}
+.p-name{font-size:20px;font-weight:800;margin-bottom:4px}
+.p-phone{color:rgba(255,255,255,.65);font-size:13px;direction:ltr}
+.p-stats{display:flex;justify-content:center;gap:32px;margin-top:20px}
+.pstat{text-align:center}
+.pstat-n{font-size:22px;font-weight:800;color:var(--o2)}
+.pstat-l{font-size:12px;color:rgba(255,255,255,.65)}
+.profile-tabs{display:flex;background:#fff;border-bottom:2px solid var(--border2);padding:0 16px;overflow-x:auto}
+.ptab{padding:12px 16px;font-size:13px;font-weight:600;color:var(--t3);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.ptab.active{color:var(--g2);border-bottom-color:var(--g2)}
+.badge-card{background:#fff;border-radius:var(--r2);padding:16px;box-shadow:var(--sh1);display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.badge-icon{font-size:32px}
+.badge-info{flex:1}
+.badge-name{font-weight:700;font-size:15px;margin-bottom:3px}
+.badge-desc{font-size:13px;color:var(--t3)}
+.badge-status{font-size:12px;font-weight:600;padding:4px 10px;border-radius:10px}
+.bs-done{background:#dcfce7;color:#166534}.bs-todo{background:var(--cream);color:var(--t3)}
+.chat-wrap{display:grid;grid-template-columns:260px 1fr;height:calc(100vh - var(--nav));background:#fff}
+.chat-sidebar{background:var(--g1);overflow-y:auto;display:flex;flex-direction:column}
+.chat-sidebar-hd{padding:16px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.chat-sidebar-title{color:#fff;font-weight:700;font-size:15px}
+.chat-item{padding:12px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.05);transition:.15s}
+.chat-item:hover,.chat-item.active{background:rgba(255,255,255,.1)}
+.ci-av{width:38px;height:38px;border-radius:50%;background:var(--o1);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0}
+.ci-info{flex:1;overflow:hidden}
+.ci-name{font-weight:600;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-last{font-size:12px;color:rgba(255,255,255,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-main{display:flex;flex-direction:column}
+.chat-main-hd{padding:14px 16px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;background:var(--warm);flex-shrink:0}
+.chat-msgs{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:var(--cream);min-height:0;max-height:calc(100vh - var(--nav) - 130px)}
+.msg{max-width:72%}
+.msg-out{align-self:flex-end}.msg-in{align-self:flex-start}
+.msg-bubble{padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.6;word-break:break-word}
+.msg-out .msg-bubble{background:var(--g2);color:#fff;border-bottom-left-radius:3px}
+.msg-in .msg-bubble{background:#fff;color:var(--t1);border-bottom-right-radius:3px;box-shadow:var(--sh1)}
+.msg-time{font-size:11px;color:var(--t4);margin-top:3px}
+.msg-out .msg-time{text-align:left}.msg-in .msg-time{text-align:right}
+.chat-input-row{padding:12px 14px;border-top:1px solid var(--border2);display:flex;gap:8px;background:#fff;flex-shrink:0}
+.chat-input-row input{flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;outline:none}
+.chat-input-row input:focus{border-color:var(--g3)}
+.no-chat{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--t4)}
+.notif-item{padding:14px;border-bottom:1px solid var(--border2);display:flex;gap:12px;align-items:flex-start;transition:.15s}
+.notif-item:hover{background:var(--cream)}
+.notif-item.unread{background:#f0f7e6}
+.notif-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ni-green{background:#dcfce7}.ni-blue{background:#dbeafe}.ni-orange{background:#fed7aa}
+.notif-text{font-size:14px;color:var(--t1);margin-bottom:3px}
+.notif-time{font-size:12px;color:var(--t3)}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.astat{background:#fff;border-radius:var(--r2);padding:16px;box-shadow:var(--sh1);text-align:center}
+.astat-n{font-size:26px;font-weight:900;color:var(--g2);margin-bottom:4px}
+.astat-l{font-size:13px;color:var(--t3)}
+.admin-table{width:100%;background:#fff;border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh1)}
+.admin-table th{background:var(--g1);color:#fff;padding:12px 14px;font-size:13px;font-weight:600;text-align:right}
+.admin-table td{padding:11px 14px;font-size:13px;color:var(--t2);border-bottom:1px solid var(--border2)}
+.admin-table tr:hover td{background:var(--cream)}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-left:5px}
+.sd-green{background:#22c55e}.sd-orange{background:#f97316}.sd-red{background:var(--red)}
+.vet-card{background:#fff;border-radius:var(--r2);padding:16px;box-shadow:var(--sh1);display:flex;gap:14px;align-items:flex-start}
+.vet-av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g3));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.vet-name{font-weight:700;font-size:15px;margin-bottom:3px}
+.vet-spec{font-size:13px;color:var(--t3);margin-bottom:6px}
+.price-suggest{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #bbf7d0;border-radius:var(--r1);padding:10px 13px;font-size:13px;color:#166534;margin-top:6px;display:none}
+.price-suggest.show{display:flex;align-items:center;gap:6px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--g1);color:#fff;padding:11px 22px;border-radius:30px;font-size:14px;font-weight:500;opacity:0;transition:.3s;z-index:9999;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.toast-err{background:var(--red)}.toast.toast-ok{background:#16a34a}
+.empty{text-align:center;padding:56px 20px;color:var(--t3)}
+.empty-icon{font-size:52px;margin-bottom:14px}
+.empty p{font-size:15px}
+.empty-chat-list{padding:20px;text-align:center;color:rgba(255,255,255,.4);font-size:13px}
+@media(max-width:640px){
+  .hero h1{font-size:22px}.hero-stats{gap:16px}.fro::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:var(--g3);border-radius:3px}
+.navbar{position:fixed;top:0;left:0;right:0;height:var(--nav);background:var(--g1);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:500;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.nav-logo{display:flex;align-items:center;gap:8px;cursor:pointer}
+.nav-logo-emoji{font-size:26px}
+.nav-logo-text{font-size:18px;font-weight:900;color:#fff}
+.nav-logo-text em{font-style:normal;color:var(--o2)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-icon-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:.15s}
+.nav-icon-btn:hover{background:rgba(255,255,255,.2)}
+.nav-badge{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--o1);border-radius:50%;border:2px solid var(--g1)}
+.nav-avatar{width:36px;height:36px;border-radius:50%;background:var(--o1);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;cursor:pointer;border:2px solid rgba(255,255,255,.3)}
+.nav-username{color:rgba(255,255,255,.8);font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:var(--r1);border:none;font-size:14px;font-weight:600;transition:.15s;cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--o1);color:#fff}.btn-primary:hover{background:#b85e18;transform:translateY(-1px)}
+.btn-green{background:var(--g2);color:#fff}.btn-green:hover{background:var(--g1)}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--t2)}.btn-outline:hover{border-color:var(--g3);color:var(--g2)}
+.btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-sm{padding:7px 14px;font-size:13px}
+.btn-lg{padding:14px 28px;font-size:16px}
+.btn-block{width:100%}
+.page{display:none;padding-top:var(--nav);min-height:100vh}
+.page.active{display:block}
+.hero{background:linear-gradient(140deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);padding:14px 16px 14px;text-align:center;position:relative;overflow:hidden}
+.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px}
+.hero-tag{display:none}
+.hero h1{display:none}
+.hero p{display:none}
+.search-box{background:#fff;border-radius:var(--r2);padding:5px;display:flex;gap:5px;max-width:600px;margin:0 auto;box-shadow:var(--sh3);flex-wrap:nowrap}
+.search-box input{flex:1;min-width:0;border:none;outline:none;padding:8px 12px;font-size:14px;background:transparent}
+.search-box select{border:none;outline:none;padding:7px 8px;font-size:12px;background:var(--cream);border-radius:var(--r1);color:var(--t2);cursor:pointer;max-width:100px}
+.search-box button{padding:8px 14px;background:var(--o1);color:#fff;border:none;border-radius:var(--r1);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.hero-stats{display:none}
+.hstat{text-align:center;color:#fff}
+.hstat-n{font-size:24px;font-weight:900;color:var(--o2)}
+.hstat-l{font-size:12px;color:rgba(255,255,255,.65);margin-top:2px}
+.tabs{display:none}
+.tab{display:none}
+.tab-count{display:none}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:62px;background:#fff;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-around;z-index:500;box-shadow:0 -4px 16px rgba(0,0,0,.07)}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 14px;border-radius:var(--r2);border:none;background:transparent;transition:.15s;flex:1}
+.bn-item:hover{background:var(--cream)}
+.bn-item.active .bn-icon{color:var(--g2)}
+.bn-item.active .bn-label{color:var(--g2);font-weight:700}
+.bn-icon{font-size:22px;color:var(--t3);transition:.15s}
+.bn-label{font-size:11px;color:var(--t3);font-family:'Vazirmatn',sans-serif;font-weight:500}
+.bn-center{background:var(--o1);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 12px rgba(212,113,31,.4);border:none;cursor:pointer;transition:.15s;margin-bottom:16px}
+.bn-center:hover{background:#b85e18;transform:scale(1.05)}
+/* CAT FILTER BAR */
+.cat-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 16px 0;scrollbar-width:none;background:#fff;border-bottom:1px solid var(--border2)}
+.cat-bar::-webkit-scrollbar{display:none}
+.cat-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;color:var(--t2);white-space:nowrap;font-family:'Vazirmatn',sans-serif}
+.cat-btn:hover,.cat-btn.active{background:var(--g2);color:#fff;border-color:var(--g2)}
+.section{max-width:1100px;margin:0 auto;padding:24px 16px}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.sec-title{font-size:18px;font-weight:800;color:var(--g1);display:flex;align-items:center;gap:8px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:500;cursor:pointer;transition:.15s;color:var(--t2)}
+.chip:hover,.chip.active{background:var(--g2);color:#fff;border-color:var(--g2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.card{background:#fff;border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh1);transition:.2s;cursor:pointer;border:1.5px solid transparent}
+.card:hover{transform:translateY(-3px);box-shadow:var(--sh2);border-color:var(--border2)}
+.card-img{height:185px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:60px;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img-count{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px}
+.card-bookmark{position:absolute;top:8px;left:8px;width:30px;height:30px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;border:none;transition:.15s;cursor:pointer}
+.card-body{padding:12px 14px}
+.card-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-farm{background:#e6f4d6;color:var(--g2)}.badge-pet{background:#fde8d4;color:#8B4513}.badge-supply{background:#e8e8f8;color:#4040a0}.badge-agri{background:#fff3c4;color:#8a6d00}
+.badge-verified{background:#dcfce7;color:#166534}.badge-gold{background:#fef3c7;color:#92400e}.badge-exchange{background:#f0f9ff;color:#0369a1}
+.card-title{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--t1)}
+.card-meta{display:flex;gap:10px;font-size:12px;color:var(--t3);margin-bottom:8px;flex-wrap:wrap}
+.card-price{font-size:17px;font-weight:800;color:var(--o1)}
+.card-price small{font-size:12px;font-weight:400;color:var(--t3)}
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border2)}
+.seller-info{display:flex;align-items:center;gap:6px}
+.seller-av{width:24px;height:24px;border-radius:50%;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.seller-name-sm{font-size:12px;color:var(--t2)}
+.stars{color:#F59E0B;font-size:12px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:600;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--r3);width:100%;max-width:480px;max-height:92vh;overflow-y:auto;box-shadow:var(--sh3);animation:slideUp .25s ease}
+.modal-lg{max-width:680px}
+.modal-hd{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;border-radius:var(--r3) var(--r3) 0 0}
+.modal-title{font-size:18px;font-weight:800;color:var(--g1)}
+.modal-close{width:34px;height:34px;border-radius:50%;border:none;background:var(--cream);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.modal-body{padding:20px}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fg{margin-bottom:16px}.fl{display:block;font-size:13px;font-weight:600;color:var(--t1);margin-bottom:6px}
+.fi{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r1);font-size:14px;outline:none;transition:.15s;background:var(--warm);color:var(--t1)}
+.fi:focus{border-color:var(--g3);background:#fff}
+select.fi{cursor:pointer}
+textarea.fi{resize:vertical;min-height:80px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ferr{color:var(--red);font-size:12px;margin-top:4px;display:none}.ferr.show{display:block}
+.upload-area{border:2px dashed var(--border);border-radius:var(--r2);padding:20px;text-align:center;cursor:pointer;transition:.15s;background:var(--warm)}
+.upload-area:hover{border-color:var(--g3)}
+.upload-area input{display:none}
+.img-previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.img-wrap{position:relative;width:72px;height:72px}
+.img-wrap img{width:100%;height:100%;object-fit:cover;border-radius:var(--r1);border:1.5px solid var(--border)}
+.img-del{position:absolute;top:-7px;right:-7px;width:20px;height:20px;background:var(--red);color:#fff;border-radius:50%;border:none;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.auth-tabs{display:flex;border-bottom:2px solid var(--border2);margin-bottom:20px}
+.auth-tab{flex:1;padding:11px;text-align:center;font-weight:600;font-size:14px;cursor:pointer;color:var(--t3);border-bottom:2px solid transparent;margin-bottom:-2px;transition:.15s}
+.auth-tab.active{color:var(--g2);border-bottom-color:var(--g2)}
+.af{display:none}.af.active{display:block}
+.sms-box{display:flex;gap:8px;margin-bottom:12px}
+.sms-box input{flex:1}
+.sms-sent{background:var(--cream);border-radius:var(--r1);padding:10px 14px;font-size:13px;color:var(--t2);text-align:center;margin-bottom:12px}
+.sms-sent strong{color:var(--g2)}
+.detail-gallery{margin-bottom:20px}
+.main-img{width:100%;height:280px;border-radius:var(--r2);overflow:hidden;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:8px}
+.main-img img{width:100%;height:100%;object-fit:cover}
+.thumb-row{display:flex;gap:8px;overflow-x:auto}
+.thumb-row img{width:68px;height:68px;object-fit:cover;border-radius:var(--r1);cursor:pointer;border:2px solid transparent;flex-shrink:0}
+.thumb-row img.active{border-color:var(--g2)}
+.detail-price{font-size:28px;font-weight:900;color:var(--o1);margin:14px 0}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.di{background:var(--cream);border-radius:var(--r1);padding:11px}
+.di-label{font-size:11px;color:var(--t3);margin-bottom:3px}
+.di-value{font-size:14px;font-weight:600}
+.detail-desc{font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:16px}
+.seller-box{background:var(--cream);border-radius:var(--r2);padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.seller-av-lg{width:50px;height:50px;border-radius:50%;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0}
+.seller-box-info{flex:1}
+.seller-fullname{font-weight:700;font-size:15px}
+.seller-phone{font-size:13px;color:var(--t3);direction:ltr;text-align:right}
+.health-section{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--r2);padding:14px;margin-bottom:14px}
+.health-title{font-weight:700;color:#166534;margin-bottom:10px;font-size:14px}
+.health-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #dcfce7}
+.health-row:last-child{border:none}
+.profile-hero{background:linear-gradient(135deg,var(--g1),var(--g2));padding:36px 20px;text-align:center;color:#fff}
+.p-av{width:80px;height:80px;border-radius:50%;background:var(--o1);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;margin:0 auto 12px;border:3px solid rgba(255,255,255,.25)}
+.p-name{font-size:20px;font-weight:800;margin-bottom:4px}
+.p-phone{color:rgba(255,255,255,.65);font-size:13px;direction:ltr}
+.p-stats{display:flex;justify-content:center;gap:32px;margin-top:20px}
+.pstat{text-align:center}
+.pstat-n{font-size:22px;font-weight:800;color:var(--o2)}
+.pstat-l{font-size:12px;color:rgba(255,255,255,.65)}
+.profile-tabs{display:flex;background:#fff;border-bottom:2px solid var(--border2);padding:0 16px;overflow-x:auto}
+.ptab{padding:12px 16px;font-size:13px;font-weight:600;color:var(--t3);border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.ptab.active{color:var(--g2);border-bottom-color:var(--g2)}
+.badge-card{background:#fff;border-radius:var(--r2);padding:16px;box-shadow:var(--sh1);display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.badge-icon{font-size:32px}
+.badge-info{flex:1}
+.badge-name{font-weight:700;font-size:15px;margin-bottom:3px}
+.badge-desc{font-size:13px;color:var(--t3)}
+.badge-status{font-size:12px;font-weight:600;padding:4px 10px;border-radius:10px}
+.bs-done{background:#dcfce7;color:#166534}.bs-todo{background:var(--cream);color:var(--t3)}
+.chat-wrap{display:grid;grid-template-columns:260px 1fr;height:calc(100vh - var(--nav));background:#fff}
+.chat-sidebar{background:var(--g1);overflow-y:auto;display:flex;flex-direction:column}
+.chat-sidebar-hd{padding:16px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.chat-sidebar-title{color:#fff;font-weight:700;font-size:15px}
+.chat-item{padding:12px 14px;display:flex;gap:10px;align-items:center;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.05);transition:.15s}
+.chat-item:hover,.chat-item.active{background:rgba(255,255,255,.1)}
+.ci-av{width:38px;height:38px;border-radius:50%;background:var(--o1);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0}
+.ci-info{flex:1;overflow:hidden}
+.ci-name{font-weight:600;font-size:13px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-last{font-size:12px;color:rgba(255,255,255,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-main{display:flex;flex-direction:column}
+.chat-main-hd{padding:14px 16px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;background:var(--warm);flex-shrink:0}
+.chat-msgs{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:var(--cream);min-height:0;max-height:calc(100vh - var(--nav) - 130px)}
+.msg{max-width:72%}
+.msg-out{align-self:flex-end}.msg-in{align-self:flex-start}
+.msg-bubble{padding:10px 13px;border-radius:14px;font-size:14px;line-height:1.6;word-break:break-word}
+.msg-out .msg-bubble{background:var(--g2);color:#fff;border-bottom-left-radius:3px}
+.msg-in .msg-bubble{background:#fff;color:var(--t1);border-bottom-right-radius:3px;box-shadow:var(--sh1)}
+.msg-time{font-size:11px;color:var(--t4);margin-top:3px}
+.msg-out .msg-time{text-align:left}.msg-in .msg-time{text-align:right}
+.chat-input-row{padding:12px 14px;border-top:1px solid var(--border2);display:flex;gap:8px;background:#fff;flex-shrink:0}
+.chat-input-row input{flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;outline:none}
+.chat-input-row input:focus{border-color:var(--g3)}
+.no-chat{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--t4)}
+.notif-item{padding:14px;border-bottom:1px solid var(--border2);display:flex;gap:12px;align-items:flex-start;transition:.15s}
+.notif-item:hover{background:var(--cream)}
+.notif-item.unread{background:#f0f7e6}
+.notif-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ni-green{background:#dcfce7}.ni-blue{background:#dbeafe}.ni-orange{background:#fed7aa}
+.notif-text{font-size:14px;color:var(--t1);margin-bottom:3px}
+.notif-time{font-size:12px;color:var(--t3)}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.astat{background:#fff;border-radius:var(--r2);padding:16px;box-shadow:var(--sh1);text-align:center}
+.astat-n{font-size:26px;font-weight:900;color:var(--g2);margin-bottom:4px}
+.astat-l{font-size:13px;color:var(--t3)}
+.admin-table{width:100%;background:#fff;border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh1)}
+.admin-table th{background:var(--g1);color:#fff;padding:12px 14px;font-size:13px;font-weight:600;text-align:right}
+.admin-table td{padding:11px 14px;font-size:13px;color:var(--t2);border-bottom:1px solid var(--border2)}
+.admin-table tr:hover td{background:var(--cream)}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-left:5px}
+.sd-green{background:#22c55e}.sd-orange{background:#f97316}.sd-red{background:var(--red)}
+.vet-card{background:#fff;border-radius:var(--r2);padding:16px;box-shadow:var(--sh1);display:flex;gap:14px;align-items:flex-start}
+.vet-av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g3));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.vet-name{font-weight:700;font-size:15px;margin-bottom:3px}
+.vet-spec{font-size:13px;color:var(--t3);margin-bottom:6px}
+.price-suggest{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #bbf7d0;border-radius:var(--r1);padding:10px 13px;font-size:13px;color:#166534;margin-top:6px;display:none}
+.price-suggest.show{display:flex;align-items:center;gap:6px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--g1);color:#fff;padding:11px 22px;border-radius:30px;font-size:14px;font-weight:500;opacity:0;transition:.3s;z-index:9999;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.toast-err{background:var(--red)}.toast.toast-ok{background:#16a34a}
+.empty{text-align:center;padding:56px 20px;color:var(--t3)}
+.empty-icon{font-size:52px;margin-bottom:14px}
+.empty p{font-size:15px}
+.empty-chat-list{padding:20px;text-align:center;color:rgba(255,255,255,.4);font-size:13px}
+@media(max-width:640px){
+  .hero h1{font-size:22px}.hero-stats{gap:16px}.frow{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}
+  .chat-wrap{grid-template-columns:1fr}.chat-sidebar{max-height:180px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr))}.card-img{height:135px}
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-logo" onclick="showPage('pageHome')">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="36" height="36" style="display:block">
+  <circle cx="100" cy="100" r="100" fill="#6B3F1F"/>
+  <g stroke="#E8874A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="100" cy="105" rx="42" ry="38"/>
+    <path d="M 68 74 C 58 56, 64 42, 73 49"/>
+    <path d="M 132 74 C 142 56, 136 42, 127 49"/>
+    <ellipse cx="55" cy="90" rx="10" ry="14" transform="rotate(-20 55 90)"/>
+    <ellipse cx="145" cy="90" rx="10" ry="14" transform="rotate(20 145 90)"/>
+    <circle cx="84" cy="95" r="7"/>
+    <circle cx="116" cy="95" r="7"/>
+    <ellipse cx="100" cy="122" rx="22" ry="16"/>
+    <circle cx="92" cy="122" r="4"/>
+    <circle cx="108" cy="122" r="4"/>
+  </g>
+  <circle cx="87" cy="92" r="2.2" fill="#E8874A"/>
+  <circle cx="119" cy="92" r="2.2" fill="#E8874A"/>
+</svg>
+    <span class="nav-logo-text">حیوان<em>بازار</em></span>
+  </div>
+  <div class="nav-right" id="navRight">
+    <button class="btn btn-ghost btn-sm" onclick="openModal('authModal');switchAuthTab('login')">ورود</button>
+    <button class="btn btn-primary btn-sm" onclick="openModal('authModal');switchAuthTab('register')">ثبت‌نام</button>
+  </div>
+</nav>
+
+<!-- CATEGORY FILTER BAR (زیر نوار بالا) -->
+<div class="cat-bar" id="catBar" style="position:sticky;top:64px;z-index:99">
+  <button class="cat-btn active" onclick="selectCat('all',this)">🌐 همه</button>
+  <button class="cat-btn" onclick="selectCat('farm',this)">🐄 مزرعه‌ای</button>
+  <button class="cat-btn" onclick="selectCat('pet',this)">🐾 خانگی</button>
+  <button class="cat-btn" onclick="selectCat('supply',this)">🛒 لوازم</button>
+  <button class="cat-btn" onclick="selectCat('agri',this)">🌾 محصولات کشاورزی</button>
+  <button class="cat-btn" onclick="showPage('pageVet')">🩺 دامپزشکان</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="bn-item active" id="bn-home" onclick="showPage('pageHome');setActiveBottomNav('bn-home')">
+    <span class="bn-icon">🏠</span>
+    <span class="bn-label">خانه</span>
+  </button>
+  <button class="bn-item" id="bn-search" onclick="document.getElementById('searchInput').focus();showPage('pageHome');setActiveBottomNav('bn-search')">
+    <span class="bn-icon">🔍</span>
+    <span class="bn-label">جستجو</span>
+  </button>
+  <button class="bn-center" onclick="openNewListing()" title="آگهی جدید">➕</button>
+  <button class="bn-item" id="bn-chat" onclick="showPage('pageChat');setActiveBottomNav('bn-chat')">
+    <span class="bn-icon">💬</span>
+    <span class="bn-label">پیام‌ها</span>
+  </button>
+  <button class="bn-item" id="bn-profile" onclick="handleProfileNav();setActiveBottomNav('bn-profile')">
+    <span class="bn-icon">👤</span>
+    <span class="bn-label">پروفایل</span>
+  </button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="pageHome">
+  <div class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-tag">🇮🇷 بازار حیوانات ایران</div>
+    <h1>خرید و فروش <em>حیوانات</em><br>با اطمینان کامل</h1>
+    <p>هزاران آگهی از سراسر ایران — فروشندگان تأیید شده</p>
+    <div class="search-box">
+      <input id="searchInput" placeholder="جستجو: گوسفند، سگ، گربه..." oninput="renderListings()" onfocus="goToResults()" onclick="goToResults()">
+      <button onclick="renderListings();goToResults()">جستجو</button>
+    </div>
+  </div>
+  <div class="section" style="padding-top:16px;padding-bottom:80px">
+    <div class="sec-header">
+      <div class="filter-row">
+        <span class="chip active" onclick="setSort('newest',this)">جدیدترین</span>
+        <span class="chip" onclick="setSort('cheapest',this)">ارزان‌ترین</span>
+        <span class="chip" onclick="setSort('expensive',this)">گران‌ترین</span>
+        <span class="chip" onclick="setSort('verified',this)">✅ تأیید شده</span>
+      </div>
+    </div>
+    <div class="grid" id="listingsGrid"></div>
+    <div class="empty" id="emptyState" style="display:none"><div class="empty-icon">🔍</div><p>آگهی‌ای پیدا نشد</p></div>
+  </div>
+  <!-- hidden stat elements still needed by JS -->
+  <span id="hStatListings" style="display:none"></span>
+  <span id="hStatUsers" style="display:none"></span>
+  <span id="tc-all" style="display:none"></span>
+  <span id="tc-farm" style="display:none"></span>
+  <span id="tc-pet" style="display:none"></span>
+  <span id="tc-supply" style="display:none"></span>
+  <span id="tc-agri" style="display:none"></span>
+</div>
+
+<!-- PROFILE -->
+<div class="page" id="pageProfile">
+  <div class="profile-hero">
+    <div class="p-av" id="pAv">؟</div>
+    <div class="p-name" id="pName">—</div>
+    <div class="p-phone" id="pPhone">—</div>
+    <div class="p-stats">
+      <div class="pstat"><div class="pstat-n" id="pStatAds">۰</div><div class="pstat-l">آگهی</div></div>
+      <div class="pstat"><div class="pstat-n" id="pStatRate">—</div><div class="pstat-l">امتیاز</div></div>
+      <div class="pstat"><div class="pstat-n" id="pStatBadge">—</div><div class="pstat-l">سطح</div></div>
+    </div>
+  </div>
+  <div class="profile-tabs">
+    <button class="ptab active" onclick="switchProfileTab('myads',this)">آگهی‌هایم</button>
+    <button class="ptab" onclick="switchProfileTab('bookmarks',this)">نشان‌شده‌ها</button>
+    <button class="ptab" onclick="switchProfileTab('badges',this)">سطح‌بندی</button>
+    <button class="ptab" onclick="switchProfileTab('settings',this)">تنظیمات</button>
+  </div>
+  <div class="section">
+    <div id="ptab-myads">
+      <div class="sec-header"><div class="sec-title">📦 آگهی‌های من</div><button class="btn btn-primary btn-sm" onclick="openNewListing()">+ آگهی جدید</button></div>
+      <div class="grid" id="myAdsGrid"></div>
+      <div class="empty" id="myAdsEmpty" style="display:none"><div class="empty-icon">📭</div><p>هنوز آگهی ندارید</p></div>
+    </div>
+    <div id="ptab-bookmarks" style="display:none">
+      <div class="sec-title" style="margin-bottom:16px">🔖 نشان‌شده‌ها</div>
+      <div class="grid" id="bookmarksGrid"></div>
+      <div class="empty" id="bookmarksEmpty" style="display:none"><div class="empty-icon">🔖</div><p>آگهی نشان نکرده‌اید</p></div>
+    </div>
+    <div id="ptab-badges" style="display:none"><div class="sec-title" style="margin-bottom:16px">🏅 سطح‌بندی</div><div id="badgesContent"></div></div>
+    <div id="ptab-settings" style="display:none">
+      <div class="sec-title" style="margin-bottom:16px">⚙️ تنظیمات</div>
+      <div style="background:#fff;border-radius:var(--r2);padding:20px;box-shadow:var(--sh1)">
+        <div class="fg"><label class="fl">نام</label><input class="fi" id="settFirst"></div>
+        <div class="fg"><label class="fl">نام خانوادگی</label><input class="fi" id="settLast"></div>
+        <div class="fg"><label class="fl">شهر</label>
+          <div class="fi" onclick="openCityPicker('settCity')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between">
+            <span id="settCity_label">انتخاب استان و شهر</span><span>▾</span>
+          </div>
+          <input type="hidden" id="settCity" value="">
+        </div>
+        <button class="btn btn-green btn-block" onclick="saveSettings()">ذخیره</button>
+        <div style="margin-top:10px"><button class="btn btn-danger btn-block" onclick="doLogout()">خروج از حساب</button></div>
+        <div style="margin-top:24px;padding-top:16px;border-top:1px dashed var(--border)">
+          <div style="font-size:12px;color:var(--t3);margin-bottom:8px">منطقه خطر — همه‌ی آگهی‌ها، کاربران و پیام‌های ذخیره‌شده روی این دستگاه پاک می‌شه (برای پاک کردن داده‌های آزمایشی)</div>
+          <button class="btn btn-outline btn-block" style="border-color:#dc2626;color:#dc2626" onclick="factoryReset()">🗑️ پاک‌سازی کامل داده‌های اپلیکیشن</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div class="page" id="pageChat" style="padding-top:var(--nav)">
+  <div class="chat-wrap">
+    <div class="chat-sidebar">
+      <div class="chat-sidebar-hd"><div class="chat-sidebar-title">💬 پیام‌ها</div></div>
+      <div id="chatList"></div>
+    </div>
+    <div class="chat-main" id="chatMain"><div class="no-chat"><div style="font-size:48px">💬</div><p>یک مکالمه انتخاب کنید</p></div></div>
+  </div>
+</div>
+
+<!-- NOTIF -->
+<div class="page" id="pageNotif">
+  <div class="section">
+    <div class="sec-title" style="margin-bottom:16px">🔔 اعلان‌ها</div>
+    <div style="background:#fff;border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh1)" id="notifList"></div>
+    <div class="empty" id="notifEmpty" style="display:none"><div class="empty-icon">🔔</div><p>اعلانی ندارید</p></div>
+  </div>
+</div>
+
+<!-- VET -->
+<div class="page" id="pageVet">
+  <div class="section">
+    <div class="sec-header"><div class="sec-title">🩺 دامپزشکان آنلاین</div></div>
+    <p style="color:var(--t3);font-size:14px;margin-bottom:20px">با دامپزشکان متخصص به صورت آنلاین مشورت کنید</p>
+    <div class="grid" id="vetGrid"></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="page" id="pageAdmin">
+  <div class="section">
+    <div class="sec-title" style="margin-bottom:20px">⚙️ پنل مدیریت</div>
+    <div class="admin-stats" id="adminStats"></div>
+    <div class="profile-tabs" style="background:transparent;padding:0;border:none;margin-bottom:16px">
+      <button class="ptab active" onclick="switchAdminTab('listings',this)">آگهی‌ها</button>
+      <button class="ptab" onclick="switchAdminTab('users',this)">کاربران</button>
+      <button class="ptab" onclick="switchAdminTab('reports',this)">گزارش‌ها</button>
+    </div>
+    <div id="adminContent"></div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="overlay" id="authModal">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">🐾 ورود / ثبت‌نام</div><button class="modal-close" onclick="closeModal('authModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="atLogin" onclick="switchAuthTab('login')">ورود</div>
+        <div class="auth-tab" id="atRegister" onclick="switchAuthTab('register')">ثبت‌نام</div>
+      </div>
+      <div class="af active" id="afLogin">
+        <div class="fg"><label class="fl">شماره موبایل</label>
+          <input class="fi" id="loginPhone" type="tel" placeholder="09..." dir="ltr">
+          <div class="ferr" id="loginErr">این شماره یافت نشد</div>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="doLogin()">ورود</button>
+        <p style="text-align:center;font-size:13px;color:var(--t3);margin-top:14px">حساب ندارید؟ <a onclick="switchAuthTab('register')" style="color:var(--g2);cursor:pointer;font-weight:600">ثبت‌نام کنید</a></p>
+      </div>
+      <div class="af" id="afRegister">
+        <div class="frow">
+          <div class="fg"><label class="fl">نام *</label><input class="fi" id="regFirst" placeholder="علی"></div>
+          <div class="fg"><label class="fl">نام خانوادگی *</label><input class="fi" id="regLast" placeholder="احمدی"></div>
+        </div>
+        <div class="fg"><label class="fl">شماره موبایل *</label>
+          <input class="fi" id="regPhone" type="tel" placeholder="09..." dir="ltr">
+          <div class="ferr" id="regPhoneErr">این شماره قبلاً ثبت شده</div>
+        </div>
+        <div class="fg"><label class="fl">استان و شهر</label>
+          <div class="fi" onclick="openCityPicker('regCity')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between">
+            <span id="regCity_label">انتخاب استان و شهر</span><span>▾</span>
+          </div>
+          <input type="hidden" id="regCity" value="">
+        </div>
+        <div class="fg"><label class="fl">نقش شما در حیوان‌بازار *</label><select class="fi" id="regRole">
+          <option value="">انتخاب نقش</option>
+          <option value="seller_livestock">فروشنده دام</option>
+          <option value="seller_supplies">فروشنده لوازم حیوانات</option>
+          <option value="vet">دامپزشک</option>
+          <option value="seller_medicine">فروشنده دارو</option>
+          <option value="inseminator">تلقیح‌کننده</option>
+          <option value="groomer">آرایشگر حیوانات</option>
+          <option value="farmer">کشاورز</option>
+          <option value="caretaker">مسئول نگهداری</option>
+          <option value="other">سایر</option>
+        </select></div>
+        <button class="btn btn-primary btn-block" id="regBtn" onclick="doRegister()">ثبت‌نام</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CITY PICKER MODAL -->
+<div class="overlay" id="cityModal">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">📍 انتخاب استان و شهر</div><button class="modal-close" onclick="closeModal('cityModal')">✕</button></div>
+    <div class="modal-body">
+      <div id="cityAccordion" style="max-height:65vh;overflow-y:auto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LISTING MODAL -->
+<div class="overlay" id="listingModal">
+  <div class="modal modal-lg">
+    <div class="modal-hd"><div class="modal-title" id="listingModalTitle">➕ ثبت آگهی جدید</div><button class="modal-close" onclick="closeModal('listingModal')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editListingId">
+      <div class="frow">
+        <div class="fg"><label class="fl">دسته‌بندی *</label><select class="fi" id="lCat" onchange="onCatChange()"><option value="">انتخاب کنید</option><option value="farm">🐄 مزرعه‌ای</option><option value="pet">🐾 خانگی</option><option value="supply">🛒 لوازم</option><option value="agri">🌾 محصولات کشاورزی</option></select></div>
+        <div class="fg"><label class="fl">نوع *</label><select class="fi" id="lType"><option value="">ابتدا دسته انتخاب کنید</option></select></div>
+      </div>
+      <div class="fg" id="lBreedGroup" style="display:none"><label class="fl">نژاد</label><input class="fi" id="lBreed" placeholder="مثلاً: گلدن رتریور..."></div>
+      <div class="frow" id="lAnimalFields">
+        <div class="fg"><label class="fl">جنسیت</label><select class="fi" id="lGender"><option value="">نامشخص</option><option value="male">نر</option><option value="female">ماده</option></select></div>
+        <div class="fg"><label class="fl">سن (ماه)</label><input class="fi" id="lAge" type="number" min="0" placeholder="۱۲"></div>
+      </div>
+      <div class="fg" id="lUseGroup"><label class="fl" id="lUseLabel">کارکرد *</label><input class="fi" id="lUse" placeholder="مثلاً: شیرده، نگهبان..."></div>
+      <div class="frow">
+        <div class="fg"><label class="fl">قیمت (تومان) *</label><input class="fi" id="lPrice" type="number" placeholder="5000000" dir="ltr" oninput="showPriceSuggest()"><div class="price-suggest" id="priceSuggest">💡 <span id="priceSuggestText"></span></div></div>
+        <div class="fg"><label class="fl">شهر</label>
+          <div class="fi" onclick="openCityPicker('lCity')" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between">
+            <span id="lCity_label">انتخاب استان و شهر</span><span>▾</span>
+          </div>
+          <input type="hidden" id="lCity" value="">
+        </div>
+      </div>
+      <div class="fg"><label class="fl" style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="lExchange"> امکان معاوضه</label></div>
+      <div class="fg"><label class="fl">توضیحات</label><textarea class="fi" id="lDesc" placeholder="توضیحات بیشتر..."></textarea></div>
+      <div id="lHealthGroup" style="display:none">
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:var(--r2);padding:14px;margin-bottom:16px">
+          <div style="font-weight:700;color:#166534;margin-bottom:12px;font-size:14px">🏥 پرونده سلامت (اختیاری)</div>
+          <div class="frow">
+            <div class="fg"><label class="fl">آخرین واکسن</label><input class="fi" id="hVaccine" placeholder="هاری - ۱۴۰۳/۰۶"></div>
+            <div class="fg"><label class="fl">آخرین ویزیت دامپزشک</label><input class="fi" id="hVetDate" placeholder="۱۴۰۳/۰۸"></div>
+          </div>
+          <div class="fg"><label class="fl">وضعیت سلامت</label><select class="fi" id="hStatus"><option value="">انتخاب کنید</option><option>کاملاً سالم</option><option>نیاز به مراقبت</option><option>در حال درمان</option></select></div>
+          <div class="fg"><label class="fl">یادداشت</label><textarea class="fi" id="hNotes" placeholder="بیماری‌های قبلی..." style="min-height:60px"></textarea></div>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="fl">تصاویر (۱ تا ۵ عکس) *</label>
+        <div class="upload-area" onclick="document.getElementById('imgInput').click()">
+          <div style="font-size:28px;margin-bottom:6px">📷</div>
+          <div style="font-size:13px;color:var(--t2)">کلیک کنید برای افزودن عکس</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:3px">حداقل ۱ و حداکثر ۵ تصویر</div>
+          <input type="file" id="imgInput" multiple accept="image/*" onchange="handleImgs(event)">
+        </div>
+        <div class="img-previews" id="imgPrev"></div>
+        <div class="ferr" id="imgErr">حداقل یک تصویر الزامی است</div>
+      </div>
+      <button class="btn btn-primary btn-block btn-lg" onclick="submitListing()">ثبت آگهی</button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="overlay" id="detailModal">
+  <div class="modal modal-lg">
+    <div class="modal-hd"><div class="modal-title" id="detailTitle">جزئیات آگهی</div><button class="modal-close" onclick="closeModal('detailModal')">✕</button></div>
+    <div class="modal-body" id="detailBody"></div>
+  </div>
+</div>
+
+<!-- REPORT MODAL -->
+<div class="overlay" id="reportModal">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">🚩 گزارش آگهی</div><button class="modal-close" onclick="closeModal('reportModal')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="reportListingId">
+      <div class="fg"><label class="fl">دلیل *</label><select class="fi" id="reportReason"><option value="">انتخاب کنید</option><option>تصاویر جعلی</option><option>قیمت غیرواقعی</option><option>اطلاعات نادرست</option><option>کلاهبرداری</option><option>فروش حیوان بیمار</option><option>سایر موارد</option></select></div>
+      <div class="fg"><label class="fl">توضیحات</label><textarea class="fi" id="reportDesc" placeholder="توضیحات..."></textarea></div>
+      <button class="btn btn-danger btn-block" onclick="submitReport()">ارسال گزارش</button>
+    </div>
+  </div>
+</div>
+
+<!-- RATE MODAL -->
+<div class="overlay" id="rateModal">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">⭐ امتیاز به فروشنده</div><button class="modal-close" onclick="closeModal('rateModal')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="rateSellerId">
+      <div class="fg"><label class="fl">امتیاز شما</label><div style="display:flex;gap:10px;font-size:32px;margin-bottom:8px" id="starRating"><span style="cursor:pointer" onclick="setRating(1)">☆</span><span style="cursor:pointer" onclick="setRating(2)">☆</span><span style="cursor:pointer" onclick="setRating(3)">☆</span><span style="cursor:pointer" onclick="setRating(4)">☆</span><span style="cursor:pointer" onclick="setRating(5)">☆</span></div></div>
+      <div class="fg"><label class="fl">نظر شما</label><textarea class="fi" id="rateComment" placeholder="تجربه‌تان را بنویسید..."></textarea></div>
+      <button class="btn btn-primary btn-block" onclick="submitRate()">ثبت امتیاز</button>
+    </div>
+  </div>
+</div>
+
+<!-- VERIFY MODAL -->
+<div class="overlay" id="verifyModal">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title">✅ احراز هویت</div><button class="modal-close" onclick="closeModal('verifyModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="background:#f0fdf4;border-radius:var(--r2);padding:14px;margin-bottom:16px;font-size:13px;color:#166534">با احراز هویت، بج "فروشنده تأیید شده" دریافت می‌کنید.</div>
+      <div class="fg"><label class="fl">کد ملی *</label><input class="fi" id="vNatCode" placeholder="0012345678" dir="ltr"></div>
+      <div class="fg"><label class="fl">تصویر کارت ملی *</label>
+        <div class="upload-area" onclick="document.getElementById('vImgInput').click()"><div style="font-size:24px;margin-bottom:6px">🪪</div><div style="font-size:13px;color:var(--t2)">آپلود کارت ملی</div><input type="file" id="vImgInput" accept="image/*"></div>
+      </div>
+      <button class="btn btn-green btn-block" onclick="submitVerify()">ارسال درخواست</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const DB={get:(k,d=[])=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+let CU=null,selCat='all',sortMode='newest',uploadedImgs=[],activeChatWith=null,editingListingId=null,currentRatingVal=0;
+const animals={farm:['گاو','گوسفند','بز','اسب','مرغ','خروس','اردک','غاز','بوقلمون','شتر','الاغ','قاطر','خرگوش مزرعه‌ای','ماهی پرورشی','بلدرچین'],pet:['سگ','گربه','طوطی','قناری','ماهی آکواریومی','خرگوش','همستر','لاک‌پشت','خوکچه هندی','فنچ','کاکاتوس','مار','آفتاب‌پرست'],supply:['قفس پرنده','آکواریوم','خانه سگ','تشک و بستر','غذای سگ','غذای گربه','غذای پرنده','ظرف غذا','مکمل غذایی','قلاده','شامپو حیوانات','اسباب‌بازی','لباس حیوانات','باکس حمل'],agri:['گندم','جو','برنج','ذرت','یونجه','کاه','کود','بذر','میوه','سبزیجات','خرما','زعفران','پسته','عسل','علوفه','نهال']};
+const priceSuggests={'گاو':{min:40e6,max:150e6},'گوسفند':{min:8e6,max:25e6},'بز':{min:5e6,max:18e6},'اسب':{min:100e6,max:500e6},'سگ':{min:3e6,max:50e6},'گربه':{min:2e6,max:30e6},'طوطی':{min:1.5e6,max:15e6},'مرغ':{min:500e3,max:2e6}};
+const vets=[];
+
+function seed(){
+  if(DB.get('initialized',false))return;
+  if(!DB.get('users',null)) DB.set('users',[]);
+  if(!DB.get('listings',null)) DB.set('listings',[]);
+  if(!DB.get('chats',null)) DB.set('chats',{});
+  if(!DB.get('notifs',null)) DB.set('notifs',{});
+  if(!DB.get('reports',null)) DB.set('reports',[]);
+  if(!DB.get('bookmarks',null)) DB.set('bookmarks',{});
+  DB.set('initialized',true);
+}
+
+function updateNav(){
+  const nr=document.getElementById('navRight');
+  if(CU){
+    const nc=getUnreadNotifs();
+    nr.innerHTML=`<button class="nav-icon-btn" onclick="showPage('pageNotif')">🔔${nc>0?'<span class="nav-badge"></span>':''}</button>${CU.isAdmin?'<button class="nav-icon-btn" onclick="showPage(\'pageAdmin\')">⚙️</button>':''}`;
+  }else{nr.innerHTML='<button class="btn btn-ghost btn-sm" onclick="openModal(\'authModal\');switchAuthTab(\'login\')">ورود</button><button class="btn btn-primary btn-sm" onclick="openModal(\'authModal\');switchAuthTab(\'register\')">ثبت‌نام</button>';}
+}
+function getUnreadNotifs(){if(!CU)return 0;return((DB.get('notifs',{}))[CU.id]||[]).filter(n=>!n.read).length;}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  // نمایش/مخفی کردن نوار دسته‌بندی
+  const catBar=document.getElementById('catBar');
+  if(catBar) catBar.style.display=id==='pageHome'?'flex':'none';
+  if(id==='pageProfile')renderProfile();
+  if(id==='pageChat')renderChatPage();
+  if(id==='pageNotif')renderNotifs();
+  if(id==='pageAdmin')renderAdmin();
+  if(id==='pageVet')renderVets();
+  if(id==='pageHome')renderListings();
+  // آپدیت تب‌بار پایین
+  const map={'pageHome':'bn-home','pageChat':'bn-chat','pageProfile':'bn-profile'};
+  if(map[id]) setActiveBottomNav(map[id]);
+}
+
+function selectCat(cat,el){selCat=cat;document.querySelectorAll('.cat-btn').forEach(t=>t.classList.remove('active'));el.classList.add('active');showPage('pageHome');renderListings();}
+function setSort(mode,el){sortMode=mode;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderListings();}
+function setActiveBottomNav(id){document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));const el=document.getElementById(id);if(el)el.classList.add('active');}
+function handleProfileNav(){if(CU)showPage('pageProfile');else{openModal('authModal');switchAuthTab('login');}}
+
+function goToResults(){
+  renderListings();
+  const grid=document.getElementById('listingsGrid');
+  if(grid)grid.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderListings(){
+  let ls=DB.get('listings').filter(l=>l.status==='active');
+  const q=(document.getElementById('searchInput')?.value||'').toLowerCase();
+  const activeCat=selCat;
+  if(activeCat&&activeCat!=='all')ls=ls.filter(l=>l.cat===activeCat);
+  if(q)ls=ls.filter(l=>[l.type,l.breed,l.use,l.desc,l.city].join(' ').toLowerCase().includes(q));
+  if(sortMode==='newest')ls.sort((a,b)=>b.createdAt-a.createdAt);
+  else if(sortMode==='cheapest')ls.sort((a,b)=>a.price-b.price);
+  else if(sortMode==='expensive')ls.sort((a,b)=>b.price-a.price);
+  else if(sortMode==='verified'){const us=DB.get('users');ls=ls.filter(l=>{const u=us.find(u=>u.id===l.userId);return u&&u.verified;});}
+  const grid=document.getElementById('listingsGrid');
+  const empty=document.getElementById('emptyState');
+  if(ls.length===0){grid.innerHTML='';empty.style.display='block';}
+  else{empty.style.display='none';grid.innerHTML=ls.map(l=>cardHTML(l)).join('');}
+  updateCounts();updateHeroStats();
+}
+
+function cardHTML(l){
+  const users=DB.get('users');
+  const seller=users.find(u=>u.id===l.userId)||{};
+  const bks=CU?(DB.get('bookmarks',{}))[CU.id]||[]:[];
+  const bkd=bks.includes(l.id);
+  const bc=l.cat==='farm'?'badge-farm':l.cat==='pet'?'badge-pet':l.cat==='agri'?'badge-agri':'badge-supply';
+  const bt=l.cat==='farm'?'🐄 مزرعه‌ای':l.cat==='pet'?'🐾 خانگی':l.cat==='agri'?'🌾 محصولات کشاورزی':'🛒 لوازم';
+  const imgC=l.images&&l.images[0]?(l.images[0].startsWith('data:')?`<img src="${l.images[0]}" alt="">`:`<span>${l.images[0]}</span>`):'<span>🐾</span>';
+  const stars='⭐'.repeat(Math.round(seller.rating||0));
+  return `<div class="card" onclick="openDetail('${l.id}')">
+    <div class="card-img">${imgC}${l.images&&l.images.length>1?`<span class="card-img-count">📷 ${l.images.length}</span>`:''}${CU?`<button class="card-bookmark" onclick="event.stopPropagation();toggleBookmark('${l.id}')">${bkd?'❤️':'🤍'}</button>`:''}</div>
+    <div class="card-body">
+      <div class="card-badges"><span class="badge ${bc}">${bt}</span>${seller.verified?'<span class="badge badge-verified">✅ تأیید</span>':''}${l.exchange?'<span class="badge badge-exchange">🔄</span>':''}${seller.badge==='gold'?'<span class="badge badge-gold">⭐</span>':''}</div>
+      <div class="card-title">${l.type}${l.breed?' — '+l.breed:''}</div>
+      <div class="card-meta">${l.gender?`<span>${l.gender==='male'?'♂ نر':'♀ ماده'}</span>`:''}${l.age!=null?`<span>🕐 ${l.age} ماه</span>`:''}${l.city?`<span>📍 ${l.city}</span>`:''}</div>
+      <div class="card-price">${Number(l.price).toLocaleString('fa-IR')} <small>تومان</small></div>
+      <div class="card-footer"><div class="seller-info"><div class="seller-av">${(seller.firstName||'؟')[0]}</div><span class="seller-name-sm">${seller.firstName||''} ${seller.lastName||''}</span></div><span style="font-size:11px;color:var(--t4)">${timeAgo(l.createdAt)}</span></div>
+    </div></div>`;
+}
+
+function updateCounts(){const ls=DB.get('listings').filter(l=>l.status==='active');['all','farm','pet','supply','agri'].forEach(c=>{const el=document.getElementById('tc-'+c);if(el)el.textContent=c==='all'?ls.length:ls.filter(l=>l.cat===c).length;});}
+function updateHeroStats(){const ls=DB.get('listings');const us=DB.get('users');const el1=document.getElementById('hStatListings');const el2=document.getElementById('hStatUsers');if(el1)el1.textContent=toFA(ls.filter(l=>l.status==='active').length);if(el2)el2.textContent=toFA(us.length);}
+
+function openDetail(id){
+  const l=DB.get('listings').find(x=>x.id===id);if(!l)return;
+  const seller=DB.get('users').find(u=>u.id===l.userId)||{};
+  const bc=l.cat==='farm'?'badge-farm':l.cat==='pet'?'badge-pet':l.cat==='agri'?'badge-agri':'badge-supply';
+  const bt=l.cat==='farm'?'🐄 مزرعه‌ای':l.cat==='pet'?'🐾 خانگی':l.cat==='agri'?'🌾 محصولات کشاورزی':'🛒 لوازم';
+  const mainImg=l.images[0]?(l.images[0].startsWith('data:')?`<img src="${l.images[0]}" id="mainDImg">`:`<span style="font-size:80px">${l.images[0]}</span>`):'<span style="font-size:80px">🐾</span>';
+  const thumbs=l.images.filter(i=>i.startsWith('data:')).length>1?`<div class="thumb-row">${l.images.filter(i=>i.startsWith('data:')).map((img,i)=>`<img src="${img}" class="${i===0?'active':''}" onclick="switchDImg('${img}',this)">`).join('')}</div>`:'';
+  const healthHTML=l.health?`<div class="health-section"><div class="health-title">🏥 پرونده سلامت</div>${l.health.vaccine?`<div class="health-row"><span>💉 واکسن</span><span>${l.health.vaccine}</span></div>`:''}${l.health.vetDate?`<div class="health-row"><span>🩺 ویزیت</span><span>${l.health.vetDate}</span></div>`:''}${l.health.status?`<div class="health-row"><span>❤️ سلامت</span><span>${l.health.status}</span></div>`:''}${l.health.notes?`<div class="health-row"><span>📋 یادداشت</span><span>${l.health.notes}</span></div>`:''}</div>`:'';
+  const isOwner=CU&&CU.id===l.userId;
+  const chatBtn=CU&&!isOwner?`<button class="btn btn-green btn-block" onclick="startChat('${l.userId}','${l.id}');closeModal('detailModal')">💬 چت با فروشنده</button>`:!CU?`<button class="btn btn-outline btn-block" onclick="openModal('authModal')">برای چت ثبت‌نام کنید</button>`:'';
+  const ownerBtns=isOwner?`<div style="display:flex;gap:8px;margin-bottom:10px"><button class="btn btn-outline btn-sm" style="flex:1" onclick="editListing('${l.id}');closeModal('detailModal')">✏️ ویرایش</button><button class="btn btn-danger btn-sm" style="flex:1" onclick="deleteListing('${l.id}');closeModal('detailModal')">🗑️ حذف</button></div>`:'';
+  document.getElementById('detailTitle').textContent=l.type+(l.breed?' — '+l.breed:'');
+  document.getElementById('detailBody').innerHTML=`
+    <div class="detail-gallery"><div class="main-img">${mainImg}</div>${thumbs}</div>
+    <div class="card-badges" style="margin-bottom:10px"><span class="badge ${bc}">${bt}</span>${seller.verified?'<span class="badge badge-verified">✅ تأیید شده</span>':''}${l.exchange?'<span class="badge badge-exchange">🔄 معاوضه</span>':''}</div>
+    <div class="detail-price">${Number(l.price).toLocaleString('fa-IR')} <small style="font-size:14px;font-weight:400;color:var(--t3)">تومان</small></div>
+    <div class="detail-grid">
+      <div class="di"><div class="di-label">نوع</div><div class="di-value">${l.type}</div></div>
+      ${l.breed?`<div class="di"><div class="di-label">نژاد</div><div class="di-value">${l.breed}</div></div>`:''}
+      ${l.gender?`<div class="di"><div class="di-label">جنسیت</div><div class="di-value">${l.gender==='male'?'♂ نر':'♀ ماده'}</div></div>`:''}
+      ${l.age!=null?`<div class="di"><div class="di-label">سن</div><div class="di-value">${l.age} ماه</div></div>`:''}
+      <div class="di"><div class="di-label">کارکرد</div><div class="di-value">${l.use}</div></div>
+      ${l.city?`<div class="di"><div class="di-label">شهر</div><div class="di-value">📍 ${l.city}</div></div>`:''}
+      <div class="di"><div class="di-label">ثبت</div><div class="di-value">${timeAgo(l.createdAt)}</div></div>
+    </div>
+    ${l.desc?`<div class="detail-desc">${l.desc}</div>`:''}
+    ${healthHTML}
+    <div class="seller-box">
+      <div class="seller-av-lg">${(seller.firstName||'؟')[0]}</div>
+      <div class="seller-box-info"><div class="seller-fullname">${seller.firstName||''} ${seller.lastName||''} ${seller.verified?'✅':''}</div><div class="seller-phone" dir="ltr">${seller.phone||''}</div><div class="stars" style="margin-top:4px">${'⭐'.repeat(Math.round(seller.rating||0))} <small style="color:var(--t3)">(${seller.ratingCount||0} نظر)</small></div></div>
+    </div>
+    ${ownerBtns}${chatBtn}
+    ${CU&&!isOwner?`<button class="btn btn-outline btn-sm" style="color:var(--red);border-color:var(--red);width:100%;margin-top:8px" onclick="openReport('${l.id}')">🚩 گزارش</button>`:''}
+    ${CU&&!isOwner?`<button class="btn btn-outline btn-sm" style="width:100%;margin-top:8px" onclick="openRate('${seller.id}')">⭐ امتیاز به فروشنده</button>`:''}`;
+  openModal('detailModal');
+}
+function switchDImg(src,el){const mi=document.getElementById('mainDImg');if(mi)mi.src=src;document.querySelectorAll('.thumb-row img').forEach(i=>i.classList.remove('active'));el.classList.add('active');}
+
+function toggleBookmark(lid){
+  if(!CU){openModal('authModal');return;}
+  const bks=DB.get('bookmarks',{});if(!bks[CU.id])bks[CU.id]=[];
+  const idx=bks[CU.id].indexOf(lid);
+  if(idx>-1){bks[CU.id].splice(idx,1);showToast('از نشان‌شده‌ها حذف شد');}
+  else{bks[CU.id].push(lid);showToast('نشان شد ❤️');}
+  DB.set('bookmarks',bks);renderListings();
+}
+
+function openNewListing(){
+  if(!CU){openModal('authModal');return;}
+  editingListingId=null;uploadedImgs=[];
+  ['listingModalTitle','lCat','lType','lBreed','lAge','lUse','lPrice','lDesc','hVaccine','hVetDate','hNotes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=id==='listingModalTitle'?'➕ ثبت آگهی جدید':'';});
+  document.getElementById('editListingId').value='';
+  document.getElementById('lGender').value='';setCityField('lCity','');document.getElementById('hStatus').value='';
+  document.getElementById('lExchange').checked=false;
+  document.getElementById('imgPrev').innerHTML='';
+  document.getElementById('lBreedGroup').style.display='none';document.getElementById('lHealthGroup').style.display='none';document.getElementById('lUseGroup').style.display='none';
+  document.getElementById('priceSuggest').classList.remove('show');
+  openModal('listingModal');
+}
+
+function editListing(id){
+  const l=DB.get('listings').find(x=>x.id===id);if(!l)return;
+  editingListingId=id;uploadedImgs=l.images.filter(i=>i.startsWith('data:'));
+  document.getElementById('listingModalTitle').textContent='✏️ ویرایش آگهی';
+  document.getElementById('editListingId').value=id;
+  document.getElementById('lCat').value=l.cat;onCatChange();
+  setTimeout(()=>{document.getElementById('lType').value=l.type;},50);
+  document.getElementById('lBreed').value=l.breed||'';document.getElementById('lGender').value=l.gender||'';
+  document.getElementById('lAge').value=l.age||'';document.getElementById('lUse').value=l.use;
+  document.getElementById('lPrice').value=l.price;setCityField('lCity',l.city||'');
+  document.getElementById('lDesc').value=l.desc||'';document.getElementById('lExchange').checked=l.exchange||false;
+  if(l.health){document.getElementById('hVaccine').value=l.health.vaccine||'';document.getElementById('hVetDate').value=l.health.vetDate||'';document.getElementById('hStatus').value=l.health.status||'';document.getElementById('hNotes').value=l.health.notes||'';}
+  renderImgPreviews();openModal('listingModal');
+}
+
+function deleteListing(id){
+  if(!confirm('آگهی حذف شود؟'))return;
+  const ls=DB.get('listings');
+  DB.set('listings',ls.filter(l=>l.id!==id));
+  renderListings();if(document.getElementById('pageProfile').classList.contains('active'))renderProfile();
+  showToast('آگهی حذف شد','err');
+}
+
+function onCatChange(){
+  const cat=document.getElementById('lCat').value;
+  const isAnimal=cat==='farm'||cat==='pet';
+  document.getElementById('lType').innerHTML='<option value="">انتخاب کنید</option>'+(animals[cat]||[]).map(a=>`<option value="${a}">${a}</option>`).join('');
+  document.getElementById('lBreedGroup').style.display=isAnimal?'block':'none';
+  document.getElementById('lHealthGroup').style.display=isAnimal?'block':'none';
+  document.getElementById('lAnimalFields').style.display=isAnimal?'grid':'none';
+  document.getElementById('lUseGroup').style.display=isAnimal?'block':'none';
+  document.getElementById('lUseLabel').textContent=isAnimal?'کارکرد *':'کارکرد';
+  if(!isAnimal)document.getElementById('lUse').value='';
+}
+
+function showPriceSuggest(){
+  const type=document.getElementById('lType').value;const price=parseInt(document.getElementById('lPrice').value)||0;
+  const s=priceSuggests[type];const ps=document.getElementById('priceSuggest');
+  if(s&&price>0){let msg=price<s.min?`قیمت کمتر از بازار. محدوده معمول: ${(s.min/1e6).toFixed(0)}–${(s.max/1e6).toFixed(0)} میلیون`:price>s.max?`قیمت بیشتر از بازار. محدوده معمول: ${(s.min/1e6).toFixed(0)}–${(s.max/1e6).toFixed(0)} میلیون`:`قیمت مناسب ✓ محدوده: ${(s.min/1e6).toFixed(0)}–${(s.max/1e6).toFixed(0)} میلیون`;document.getElementById('priceSuggestText').textContent=msg;ps.classList.add('show');}else ps.classList.remove('show');
+}
+
+function handleImgs(e){
+  const files=Array.from(e.target.files);const rem=5-uploadedImgs.length;
+  files.slice(0,rem).forEach(f=>{const r=new FileReader();r.onload=ev=>{uploadedImgs.push(ev.target.result);renderImgPreviews();};r.readAsDataURL(f);});
+  if(files.length>rem)showToast('حداکثر ۵ تصویر','err');e.target.value='';
+}
+function renderImgPreviews(){document.getElementById('imgPrev').innerHTML=uploadedImgs.map((src,i)=>`<div class="img-wrap"><img src="${src}"><button class="img-del" onclick="delImg(${i})">✕</button></div>`).join('');}
+function delImg(i){uploadedImgs.splice(i,1);renderImgPreviews();}
+
+function submitListing(){
+  const cat=document.getElementById('lCat').value,type=document.getElementById('lType').value,use=document.getElementById('lUse').value.trim(),price=document.getElementById('lPrice').value;
+  const isAnimal=cat==='farm'||cat==='pet';
+  if(!cat||!type||!price||(isAnimal&&!use)){showToast('فیلدهای ستاره‌دار را پر کنید','err');return;}
+  if(uploadedImgs.length===0){document.getElementById('imgErr').classList.add('show');return;}
+  document.getElementById('imgErr').classList.remove('show');
+  const health=(cat==='farm'||cat==='pet')?{vaccine:document.getElementById('hVaccine').value,vetDate:document.getElementById('hVetDate').value,status:document.getElementById('hStatus').value,notes:document.getElementById('hNotes').value}:null;
+  const ls=DB.get('listings');
+  const data={cat,type,breed:document.getElementById('lBreed').value,gender:document.getElementById('lGender').value,age:document.getElementById('lAge').value?parseInt(document.getElementById('lAge').value):null,use,price:parseInt(price),city:document.getElementById('lCity').value,desc:document.getElementById('lDesc').value,exchange:document.getElementById('lExchange').checked,health,images:uploadedImgs};
+  if(editingListingId){const idx=ls.findIndex(x=>x.id===editingListingId);if(idx>-1){ls[idx]={...ls[idx],...data};DB.set('listings',ls);showToast('آگهی ویرایش شد ✅','ok');}}
+  else{ls.unshift({id:'l'+Date.now(),...data,userId:CU.id,status:'active',createdAt:Date.now()});DB.set('listings',ls);addNotif(CU.id,'آگهی ثبت شد','آگهی شما با موفقیت ثبت شد','ni-green','✅');showToast('آگهی ثبت شد ✅','ok');}
+  closeModal('listingModal');renderListings();if(document.getElementById('pageProfile').classList.contains('active'))renderProfile();
+}
+
+function switchAuthTab(tab){['Login','Register'].forEach(t=>{document.getElementById('at'+t).classList.toggle('active',t.toLowerCase()===tab);document.getElementById('af'+t).classList.toggle('active',t.toLowerCase()===tab);});}
+/*
+  TODO (احراز هویت واقعی): در حال حاضر ورود/ثبت‌نام فقط بر اساس شماره موبایل انجام می‌شه و
+  هیچ کد پیامکی ارسال یا بررسی نمی‌شه. هر وقت به سرور/سرویس پیامک واقعی وصل شدیم،
+  باید این‌جا یک مرحله‌ی ارسال OTP واقعی (مثلاً از طریق API کاوه‌نگار/ملی‌پیامک/فراپیامک)
+  و بررسی کد دریافتی از سرور اضافه بشه، قبل از اجرای doLogin/doRegister.
+*/
+function doLogin(){
+  const phone=document.getElementById('loginPhone').value.trim();
+  if(!phone){showToast('شماره موبایل را وارد کنید','err');return;}
+  document.getElementById('loginErr').classList.remove('show');
+  const user=DB.get('users').find(u=>u.phone===phone);
+  if(!user){document.getElementById('loginErr').classList.add('show');return;}
+  CU=user;updateNav();closeModal('authModal');showToast(`خوش آمدید ${user.firstName} عزیز 👋`,'ok');
+}
+function doRegister(){
+  const first=document.getElementById('regFirst').value.trim(),last=document.getElementById('regLast').value.trim(),phone=document.getElementById('regPhone').value.trim();
+  document.getElementById('regPhoneErr').classList.remove('show');
+  if(!first||!last||!phone){showToast('نام، نام‌خانوادگی و شماره موبایل را پر کنید','err');return;}
+  if(DB.get('users').find(u=>u.phone===phone)){document.getElementById('regPhoneErr').classList.add('show');return;}
+  const nu={id:'u'+Date.now(),firstName:first,lastName:last,phone,city:document.getElementById('regCity').value,role:document.getElementById('regRole').value,verified:false,badge:'bronze',rating:0,ratingCount:0,createdAt:Date.now()};
+  const users=DB.get('users');users.push(nu);DB.set('users',users);
+  CU=nu;updateNav();closeModal('authModal');addNotif(CU.id,'خوش آمدید!','ثبت‌نام موفق','ni-green','🎉');showToast(`ثبت‌نام موفق! خوش آمدید ${nu.firstName} 🎉`,'ok');
+}
+function doLogout(){CU=null;updateNav();showPage('pageHome');showToast('از حساب خارج شدید');}
+
+function renderProfile(){
+  if(!CU){showPage('pageHome');return;}
+  const ini=(CU.firstName[0]||'')+(CU.lastName[0]||'');
+  document.getElementById('pAv').textContent=ini;document.getElementById('pName').textContent=`${CU.firstName} ${CU.lastName}`;document.getElementById('pPhone').textContent=CU.phone;
+  const myAds=DB.get('listings').filter(l=>l.userId===CU.id&&l.status==='active');
+  document.getElementById('pStatAds').textContent=toFA(myAds.length);
+  document.getElementById('pStatRate').textContent=CU.rating?CU.rating.toFixed(1)+'⭐':'—';
+  document.getElementById('pStatBadge').textContent=CU.badge==='gold'?'⭐ طلایی':CU.badge==='silver'?'🥈 نقره‌ای':'🥉 برنزی';
+  document.getElementById('settFirst').value=CU.firstName;document.getElementById('settLast').value=CU.lastName;setCityField('settCity',CU.city||'');
+  switchProfileTab('myads',document.querySelector('.ptab'));
+}
+function switchProfileTab(tab,el){
+  ['myads','bookmarks','badges','settings'].forEach(t=>document.getElementById('ptab-'+t).style.display=t===tab?'block':'none');
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');
+  if(tab==='myads')renderMyAds();if(tab==='bookmarks')renderBookmarks();if(tab==='badges')renderBadges();
+}
+function renderMyAds(){const ls=DB.get('listings').filter(l=>l.userId===CU.id&&l.status==='active');const g=document.getElementById('myAdsGrid'),e=document.getElementById('myAdsEmpty');if(ls.length===0){g.innerHTML='';e.style.display='block';}else{e.style.display='none';g.innerHTML=ls.map(l=>cardHTML(l)).join('');}}
+function renderBookmarks(){const ids=(DB.get('bookmarks',{}))[CU.id]||[];const ls=DB.get('listings').filter(l=>ids.includes(l.id));const g=document.getElementById('bookmarksGrid'),e=document.getElementById('bookmarksEmpty');if(ls.length===0){g.innerHTML='';e.style.display='block';}else{e.style.display='none';g.innerHTML=ls.map(l=>cardHTML(l)).join('');}}
+function renderBadges(){document.getElementById('badgesContent').innerHTML=[{icon:'🥉',name:'برنزی',desc:'ثبت‌نام در سیستم',done:true},{icon:'✅',name:'تأیید شده',desc:'ارسال کارت ملی',done:CU.verified,action:!CU.verified?`<button class="btn btn-green btn-sm" onclick="openModal('verifyModal')">درخواست تأیید</button>`:''},{icon:'🥈',name:'نقره‌ای',desc:'۵ آگهی فعال + تأیید هویت',done:CU.badge==='silver'||CU.badge==='gold'},{icon:'⭐',name:'طلایی',desc:'۱۰ معامله موفق + امتیاز ۴.۵+',done:CU.badge==='gold'}].map(b=>`<div class="badge-card"><div class="badge-icon">${b.icon}</div><div class="badge-info"><div class="badge-name">${b.name}</div><div class="badge-desc">${b.desc}</div></div><div><span class="badge-status ${b.done?'bs-done':'bs-todo'}">${b.done?'✓ دارید':'—'}</span>${b.action||''}</div></div>`).join('');}
+function saveSettings(){const users=DB.get('users');const idx=users.findIndex(u=>u.id===CU.id);if(idx>-1){users[idx].firstName=document.getElementById('settFirst').value||CU.firstName;users[idx].lastName=document.getElementById('settLast').value||CU.lastName;users[idx].city=document.getElementById('settCity').value;DB.set('users',users);CU=users[idx];updateNav();renderProfile();showToast('ذخیره شد ✅','ok');}}
+function factoryReset(){
+  if(!confirm('همه‌ی آگهی‌ها، کاربران، پیام‌ها و اطلاعات ذخیره‌شده روی این دستگاه برای همیشه پاک می‌شه. مطمئنید؟'))return;
+  localStorage.clear();
+  CU=null;
+  location.reload();
+}
+
+function openReport(lid){document.getElementById('reportListingId').value=lid;openModal('reportModal');}
+function submitReport(){const r=document.getElementById('reportReason').value;if(!r){showToast('دلیل را انتخاب کنید','err');return;}const reps=DB.get('reports',[]);reps.push({id:'r'+Date.now(),listingId:document.getElementById('reportListingId').value,reporterId:CU.id,reason:r,desc:document.getElementById('reportDesc').value,createdAt:Date.now()});DB.set('reports',reps);closeModal('reportModal');showToast('گزارش ثبت شد ✅','ok');}
+function openRate(sid){document.getElementById('rateSellerId').value=sid;currentRatingVal=0;renderStars(0);openModal('rateModal');}
+function setRating(n){currentRatingVal=n;renderStars(n);}
+function renderStars(n){document.querySelectorAll('#starRating span').forEach((s,i)=>{s.textContent=i<n?'⭐':'☆';});}
+function submitRate(){if(!currentRatingVal){showToast('امتیاز را انتخاب کنید','err');return;}const sid=document.getElementById('rateSellerId').value;const users=DB.get('users');const idx=users.findIndex(u=>u.id===sid);if(idx>-1){const u=users[idx];const total=(u.rating||0)*u.ratingCount+currentRatingVal;u.ratingCount=(u.ratingCount||0)+1;u.rating=parseFloat((total/u.ratingCount).toFixed(1));DB.set('users',users);if(CU.id===sid){CU=users[idx];updateNav();}}closeModal('rateModal');showToast('امتیاز ثبت شد ⭐','ok');}
+function submitVerify(){if(!document.getElementById('vNatCode').value.trim()){showToast('کد ملی را وارد کنید','err');return;}const users=DB.get('users');const idx=users.findIndex(u=>u.id===CU.id);if(idx>-1){users[idx].verified=true;users[idx].badge='silver';DB.set('users',users);CU=users[idx];}closeModal('verifyModal');addNotif(CU.id,'احراز هویت انجام شد','بج نقره‌ای دریافت کردید','ni-green','✅');updateNav();showToast('هویت تأیید شد! بج نقره‌ای گرفتید 🥈','ok');}
+
+function startChat(sid,lid){if(!CU){openModal('authModal');return;}activeChatWith=sid;const chats=DB.get('chats',{});const key=chatKey(CU.id,sid);if(!chats[key])chats[key]=[];DB.set('chats',chats);showPage('pageChat');setTimeout(()=>openChatWith(sid),100);}
+function renderChatPage(){
+  if(!CU){showPage('pageHome');return;}
+  const chats=DB.get('chats',{});const users=DB.get('users');
+  const convos=Object.keys(chats).filter(k=>k.includes(CU.id));
+  const list=document.getElementById('chatList');
+  if(convos.length===0){list.innerHTML='<div class="empty-chat-list">هنوز مکالمه‌ای ندارید</div>';document.getElementById('chatMain').innerHTML='<div class="no-chat"><div style="font-size:48px">💬</div><p>هنوز مکالمه‌ای ندارید</p></div>';return;}
+  list.innerHTML=convos.map(key=>{const oid=key.replace(CU.id+'_','').replace('_'+CU.id,'');const other=users.find(u=>u.id===oid)||{};const msgs=chats[key]||[];const last=msgs[msgs.length-1];return `<div class="chat-item ${activeChatWith===oid?'active':''}" onclick="openChatWith('${oid}')"><div class="ci-av">${(other.firstName||'؟')[0]}</div><div class="ci-info"><div class="ci-name">${other.firstName||'ناشناس'} ${other.lastName||''}</div><div class="ci-last">${last?last.text:'—'}</div></div></div>`;}).join('');
+  if(activeChatWith)openChatWith(activeChatWith);
+}
+function openChatWith(oid){
+  activeChatWith=oid;const users=DB.get('users');const other=users.find(u=>u.id===oid)||{};
+  const key=chatKey(CU.id,oid);const chats=DB.get('chats',{});const msgs=chats[key]||[];
+  document.getElementById('chatMain').innerHTML=`
+    <div class="chat-main-hd"><div class="ci-av" style="background:var(--o1)">${(other.firstName||'؟')[0]}</div><div><div style="font-weight:700">${other.firstName||'ناشناس'} ${other.lastName||''} ${other.verified?'✅':''}</div><div style="font-size:12px;color:var(--t3)" dir="ltr">${other.phone||''}</div></div></div>
+    <div class="chat-msgs" id="chatMsgs">${msgs.length?msgs.map(m=>`<div class="msg ${m.sid===CU.id?'msg-out':'msg-in'}"><div class="msg-bubble">${m.text}</div><div class="msg-time">${timeAgo(m.ts)}</div></div>`).join(''):'<div style="text-align:center;color:var(--t4);padding:20px;font-size:13px">شروع به مکالمه کنید...</div>'}</div>
+    <div class="chat-input-row"><input id="chatInp" placeholder="پیام بنویسید..." onkeydown="if(event.key==='Enter')sendMsg('${oid}')"><button class="btn btn-green" onclick="sendMsg('${oid}')">ارسال</button></div>`;
+  scrollChat();renderChatSidebar(oid);
+}
+function renderChatSidebar(activeId){const chats=DB.get('chats',{});const users=DB.get('users');const convos=Object.keys(chats).filter(k=>k.includes(CU.id));document.getElementById('chatList').innerHTML=convos.map(key=>{const oid=key.replace(CU.id+'_','').replace('_'+CU.id,'');const other=users.find(u=>u.id===oid)||{};const msgs=chats[key]||[];const last=msgs[msgs.length-1];return `<div class="chat-item ${activeId===oid?'active':''}" onclick="openChatWith('${oid}')"><div class="ci-av">${(other.firstName||'؟')[0]}</div><div class="ci-info"><div class="ci-name">${other.firstName||'ناشناس'} ${other.lastName||''}</div><div class="ci-last">${last?last.text:'—'}</div></div></div>`;}).join('');}
+function sendMsg(oid){const inp=document.getElementById('chatInp');const text=inp.value.trim();if(!text)return;const key=chatKey(CU.id,oid);const chats=DB.get('chats',{});if(!chats[key])chats[key]=[];chats[key].push({sid:CU.id,text,ts:Date.now()});DB.set('chats',chats);inp.value='';addNotif(oid,'پیام جدید',`${CU.firstName}: ${text}`,'ni-blue','💬');openChatWith(oid);}
+function chatKey(a,b){return[a,b].sort().join('_');}
+function scrollChat(){setTimeout(()=>{const el=document.getElementById('chatMsgs');if(el)el.scrollTop=el.scrollHeight;},50);}
+
+function addNotif(uid,title,text,cls,icon){const ns=DB.get('notifs',{});if(!ns[uid])ns[uid]=[];ns[uid].unshift({id:'n'+Date.now(),title,text,cls,icon,read:false,ts:Date.now()});DB.set('notifs',ns);updateNav();}
+function renderNotifs(){
+  if(!CU)return;const ns=DB.get('notifs',{});const list=ns[CU.id]||[];
+  const container=document.getElementById('notifList');const empty=document.getElementById('notifEmpty');
+  list.forEach(n=>n.read=true);ns[CU.id]=list;DB.set('notifs',ns);updateNav();
+  if(list.length===0){container.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';container.innerHTML=list.map(n=>`<div class="notif-item unread"><div class="notif-icon ${n.cls}">${n.icon}</div><div><div class="notif-text"><strong>${n.title}</strong> — ${n.text}</div><div class="notif-time">${timeAgo(n.ts)}</div></div></div>`).join('');
+}
+
+function renderVets(){document.getElementById('vetGrid').innerHTML=vets.length?vets.map(v=>`<div class="vet-card"><div class="vet-av">${v.emoji}</div><div style="flex:1"><div class="vet-name">${v.name}</div><div class="vet-spec">${v.spec} — ${v.city}</div><div class="stars" style="margin-bottom:8px">${'⭐'.repeat(Math.round(v.stars))} <small style="color:var(--t3)">${v.stars} (${v.count} نظر)</small></div><div style="display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:12px;padding:3px 10px;border-radius:10px;${v.avail?'background:#dcfce7;color:#166534':'background:var(--cream);color:var(--t3)'}">${v.avail?'🟢 آنلاین':'⚫ آفلاین'}</span>${v.avail&&CU?`<button class="btn btn-green btn-sm" onclick="startChat('${v.id}','vet')">💬 مشاوره</button>`:v.avail?`<button class="btn btn-outline btn-sm" onclick="openModal('authModal')">💬 مشاوره</button>`:''}</div></div></div>`).join(''):'<p style="color:var(--t3);font-size:14px;text-align:center;grid-column:1/-1;padding:30px 0">هنوز دامپزشکی ثبت‌نام نکرده است. اگر دامپزشک هستید، از طریق «ثبت‌نام» به ما بپیوندید.</p>';}
+
+function renderAdmin(){
+  if(!CU?.isAdmin){showPage('pageHome');return;}
+  const ls=DB.get('listings'),us=DB.get('users'),reps=DB.get('reports',[]);
+  document.getElementById('adminStats').innerHTML=`<div class="astat"><div class="astat-n">${ls.length}</div><div class="astat-l">کل آگهی‌ها</div></div><div class="astat"><div class="astat-n">${ls.filter(l=>l.status==='active').length}</div><div class="astat-l">آگهی فعال</div></div><div class="astat"><div class="astat-n">${us.length}</div><div class="astat-l">کاربران</div></div><div class="astat"><div class="astat-n">${us.filter(u=>u.verified).length}</div><div class="astat-l">تأیید شده</div></div><div class="astat"><div class="astat-n">${reps.length}</div><div class="astat-l">گزارش‌ها</div></div>`;
+  switchAdminTab('listings',document.querySelector('#pageAdmin .ptab'));
+}
+function switchAdminTab(tab,el){
+  document.querySelectorAll('#pageAdmin .ptab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');
+  const ls=DB.get('listings'),us=DB.get('users'),reps=DB.get('reports',[]);
+  const c=document.getElementById('adminContent');
+  if(tab==='listings'){c.innerHTML=`<div style="overflow-x:auto"><table class="admin-table"><thead><tr><th>نوع</th><th>دسته</th><th>قیمت</th><th>شهر</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>${ls.map(l=>`<tr><td>${l.type}</td><td>${l.cat==='farm'?'مزرعه‌ای':l.cat==='pet'?'خانگی':l.cat==='agri'?'محصولات کشاورزی':'لوازم'}</td><td>${(l.price/1e6).toFixed(1)}M</td><td>${l.city||'—'}</td><td><span class="status-dot ${l.status==='active'?'sd-green':'sd-red'}"></span>${l.status==='active'?'فعال':'غیرفعال'}</td><td><button class="btn btn-danger btn-sm" onclick="adminDel('${l.id}')">حذف</button></td></tr>`).join('')}</tbody></table></div>`;}
+  else if(tab==='users'){c.innerHTML=`<div style="overflow-x:auto"><table class="admin-table"><thead><tr><th>نام</th><th>موبایل</th><th>شهر</th><th>سطح</th><th>تأیید</th></tr></thead><tbody>${us.map(u=>`<tr><td>${u.firstName} ${u.lastName}</td><td dir="ltr">${u.phone}</td><td>${u.city||'—'}</td><td>${u.badge}</td><td><span class="status-dot ${u.verified?'sd-green':'sd-orange'}"></span>${u.verified?'تأیید شده':'عادی'}</td></tr>`).join('')}</tbody></table></div>`;}
+  else{c.innerHTML=reps.length===0?'<div class="empty"><div class="empty-icon">✅</div><p>گزارشی وجود ندارد</p></div>':`<div style="overflow-x:auto"><table class="admin-table"><thead><tr><th>دلیل</th><th>توضیح</th><th>زمان</th></tr></thead><tbody>${reps.map(r=>`<tr><td>${r.reason}</td><td>${r.desc||'—'}</td><td>${timeAgo(r.createdAt)}</td></tr>`).join('')}</tbody></table></div>`;}
+}
+function adminDel(id){if(!confirm('حذف شود؟'))return;DB.set('listings',DB.get('listings').filter(l=>l.id!==id));renderAdmin();renderListings();showToast('حذف شد','ok');}
+
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.overlay').forEach(el=>{el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});});
+
+let toastTimer;
+function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' toast-'+type:'')+' show';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
+
+function timeAgo(ts){const d=Date.now()-ts;if(d<60000)return 'همین الان';if(d<3600000)return toFA(Math.floor(d/60000))+' دقیقه پیش';if(d<86400000)return toFA(Math.floor(d/3600000))+' ساعت پیش';return toFA(Math.floor(d/86400000))+' روز پیش';}
+function toFA(n){return String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);}
+
+const IRAN_CITIES={
+"آذربایجان شرقی":["تبریز","آذرشهر","اسکو","اهر","بستان‌آباد","بناب","ترکمانچای","جلفا","چاراویماق","خداآفرین","سراب","شبستر","عجب‌شیر","کلیبر","مراغه","مرند","ملکان","میانه","ورزقان","هریس","هشترود"],
+"آذربایجان غربی":["ارومیه","اشنویه","بوکان","پیرانشهر","تکاب","چایپاره","چالدران","خوی","سردشت","سلماس","شاهین‌دژ","شوط","صومای برادوست","ماکو","مهاباد","میاندوآب","نقده","پلدشت"],
+"اردبیل":["اردبیل","بیله‌سوار","پارس‌آباد","خلخال","کوثر","گرمی","مشگین‌شهر","نمین","نیر","سرعین"],
+"اصفهان":["اصفهان","آران و بیدگل","اردستان","برخوار","بویین‌میاندشت","تیران و کرون","چادگان","خمینی‌شهر","خوانسار","دهاقان","سمیرم","شاهین‌شهر و میمه","شهرضا","فریدن","فریدون‌شهر","فلاورجان","کاشان","کوهپایه","گلپایگان","لنجان","مبارکه","نائین","نجف‌آباد","نطنز"],
+"البرز":["کرج","اشتهارد","ساوجبلاغ","طالقان","فردیس","نظرآباد"],
+"ایلام":["ایلام","آبدانان","ایوان","بدره","پیشوا","چرداول","دره‌شهر","دهلران","ملکشاهی","مهران"],
+"بوشهر":["بوشهر","تنگستان","جم","دشتستان","دشتی","دیر","دیلم","کنگان","گناوه"],
+"تهران":["تهران","اسلامشهر","بهارستان","دماوند","ری","رباط‌کریم","شمیرانات","شهریار","فیروزکوه","قدس","قرچک","ملارد","ورامین","پاکدشت","پردیس","پیشوا"],
+"چهارمحال و بختیاری":["شهرکرد","اردل","بروجن","بن","سامان","فارسان","کوهرنگ","کیار","لردگان"],
+"خراسان جنوبی":["بیرجند","بشرویه","خوسف","درمیان","زیرکوه","سرایان","سربیشه","فردوس","قائنات","نهبندان","طبس"],
+"خراسان رضوی":["مشهد","نیشابور","سبزوار","تربت‌حیدریه","قوچان","کاشمر","تربت‌جام","چناران","درگز","سرخس","فریمان","گناباد","خواف","رشتخوار","بردسکن","جوین","جغتای","خلیل‌آباد","فیروزه","بجستان","تایباد","زاوه","کلات","مه‌ولات","بینالود"],
+"خراسان شمالی":["بجنورد","اسفراین","شیروان","جاجرم","فاروج","مانه و سملقان","رازوجرگلان","گرمه"],
+"خوزستان":["اهواز","آبادان","آغاجاری","اندیکا","اندیمشک","ایذه","باغ‌ملک","بندر ماهشهر","بندر امام خمینی","بهبهان","خرمشهر","دزفول","دشت آزادگان","رامشیر","رامهرمز","شادگان","شوش","شوشتر","گتوند","مسجدسلیمان","هندیجان","هویزه","لالی","امیدیه","کارون","حمیدیه"],
+"زنجان":["زنجان","ابهر","ایجرود","خدابنده","خرمدره","سلطانیه","طارم","ماهنشان"],
+"سمنان":["سمنان","دامغان","شاهرود","گرمسار","مهدی‌شهر","میامی"],
+"سیستان و بلوچستان":["زاهدان","ایرانشهر","چابهار","خاش","دلگان","زابل","زهک","سراوان","سرباز","فنوج","قصرقند","کنارک","مهرستان","میرجاوه","نیک‌شهر","هامون","هیرمند"],
+"فارس":["شیراز","آباده","ارسنجان","استهبان","اقلید","بوانات","پاسارگاد","جهرم","خرم‌بید","خنج","داراب","رستم","زرین‌دشت","سپیدان","سروستان","فراشبند","فسا","فیروزآباد","قیروکارزین","کازرون","کوار","لارستان","لامرد","مرودشت","ممسنی","مهر","نی‌ریز","نورآباد ممسنی"],
+"قزوین":["قزوین","آبیک","البرز","آوج","بوئین‌زهرا","تاکستان","ضیاءآباد"],
+"قم":["قم"],
+"کردستان":["سنندج","بانه","بیجار","دهگلان","دیواندره","سروآباد","سقز","قروه","کامیاران","مریوان"],
+"کرمان":["کرمان","ارزوئیه","انار","بافت","بردسیر","بم","جیرفت","رابر","راور","رفسنجان","ریگان","زرند","سیرجان","شهربابک","عنبرآباد","فهرج","قلعه‌گنج","کهنوج","کوهبنان","منوجان","نرماشیر","رودبار جنوب"],
+"کرمانشاه":["کرمانشاه","اسلام‌آباد غرب","پاوه","ثلاث باباجانی","جوانرود","دالاهو","روانسر","سرپل ذهاب","سنقر","صحنه","قصرشیرین","کنگاور","گیلانغرب","هرسین"],
+"کهگیلویه و بویراحمد":["یاسوج","باشت","بهمئی","دنا","چرام","گچساران","کهگیلویه","لنده"],
+"گلستان":["گرگان","آق‌قلا","آزادشهر","بندر ترکمن","بندرگز","رامیان","علی‌آباد کتول","کردکوی","کلاله","گالیکش","گمیشان","گنبدکاووس","مراوه‌تپه","مینودشت"],
+"گیلان":["رشت","آستارا","آستانه‌اشرفیه","املش","بندر انزلی","رودبار","رودسر","رضوانشهر","سیاهکل","شفت","صومعه‌سرا","فومن","لاهیجان","لنگرود","ماسال"],
+"لرستان":["خرم‌آباد","ازنا","الیگودرز","بروجرد","پلدختر","چگنی","دلفان","دورود","رومشکان","سلسله","کوهدشت"],
+"مازندران":["ساری","آمل","بابل","بابلسر","بندپی","بهشهر","تنکابن","جویبار","چالوس","رامسر","سوادکوه","سوادکوه شمالی","عباس‌آباد","قائم‌شهر","کلاردشت","گلوگاه","محمودآباد","میاندورود","نکا","نور","نوشهر"],
+"مرکزی":["اراک","آشتیان","تفرش","خمین","خنداب","دلیجان","زرندیه","ساوه","شازند","فراهان","کمیجان","محلات"],
+"هرمزگان":["بندرعباس","ابوموسی","بستک","بشاگرد","جاسک","حاجی‌آباد","خمیر","رودان","سیریک","قشم","میناب","بندرلنگه","پارسیان"],
+"همدان":["همدان","اسدآباد","بهار","تویسرکان","رزن","فامنین","کبودراهنگ","ملایر","نهاوند"],
+"یزد":["یزد","ابرکوه","اردکان","اشکذر","بافق","بهاباد","تفت","خاتم","مهریز","میبد"]
+};
+let cityPickerTarget=null;
+function openCityPicker(targetId){
+  cityPickerTarget=targetId;
+  const acc=document.getElementById('cityAccordion');
+  acc.innerHTML=Object.keys(IRAN_CITIES).map((prov,i)=>`
+    <div class="city-prov-item">
+      <div class="city-prov-head" onclick="toggleProvince(${i})" style="display:flex;align-items:center;justify-content:space-between;padding:14px 4px;border-bottom:1px solid var(--cream);cursor:pointer;font-weight:700">
+        <span>${prov}</span><span id="cpArrow${i}">▾</span>
+      </div>
+      <div class="city-prov-body" id="cpBody${i}" style="display:none;padding:6px 4px 14px;flex-wrap:wrap;gap:8px">
+        ${IRAN_CITIES[prov].map(c=>`<button type="button" class="btn btn-outline btn-sm" style="margin:3px" onclick="pickCity('${prov}','${c}')">${c}</button>`).join('')}
+      </div>
+    </div>`).join('');
+  openModal('cityModal');
+}
+function toggleProvince(i){
+  const body=document.getElementById('cpBody'+i);
+  const isOpen=body.style.display==='flex';
+  document.querySelectorAll('.city-prov-body').forEach(b=>b.style.display='none');
+  document.querySelectorAll('[id^="cpArrow"]').forEach(a=>a.textContent='▾');
+  if(!isOpen){body.style.display='flex';document.getElementById('cpArrow'+i).textContent='▴';}
+}
+function pickCity(prov,city){
+  if(cityPickerTarget){
+    setCityField(cityPickerTarget,city,prov);
+  }
+  closeModal('cityModal');
+}
+function setCityField(id,city,prov){
+  const el=document.getElementById(id);if(el)el.value=city||'';
+  const label=document.getElementById(id+'_label');
+  if(label)label.textContent=city?(prov?`${prov} - ${city}`:city):'انتخاب استان و شهر';
+}
+function populateCitySelects(){
+  ['regCity','lCity','settCity'].forEach(id=>{
+    const el=document.getElementById(id);const label=document.getElementById(id+'_label');
+    if(el&&label&&el.value)label.textContent=el.value;
+  });
+}
+
+seed();renderListings();updateNav();updateHeroStats();populateCitySelects();
+</script>
+</body>
+</html>
